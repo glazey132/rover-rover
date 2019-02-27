@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import NasaTodayTitle from '../components/NasaTodayTitle';
+import NasaTodayMedia from '../components/NasaTodayMedia';
+import NasaTodayText from '../components/NasaTodayText';
+import NasaTodayExitButton from '../components/NasaTodayExitButton';
+import NasaTodayOpenButton from '../components/NasaTodayOpenButton';
 
 class NasaTodayContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      todayDataOpen: true,
+    }
   }
 
   async componentDidMount(){
@@ -11,21 +18,51 @@ class NasaTodayContainer extends Component {
     const json = await result.json();
     console.log('the json ---> ', json);
     this.setState({
+      todayDataOpen: true,
       data_date: json.date,
       explanation: json.explanation,
       mediaType: json.media_type,
       title: json.title,
-      imageUrl: json.url
+      mediaUrl: json.url
     })
   }
+
+  getDailyNasaStyle = () => {
+    return {
+      //nasa blue
+      backgroundColor: '#0b3d91',
+      display: this.state.todayDataOpen ? 'flex' : 'none',
+      minHeight: '90vh',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 'calc(10px + 2vmin)',
+      color: '#fff',
+      textAlign: 'center',
+      padding: '10px',
+      width: '95%',
+      opacity: '.85',
+      zIndex: '9',
+      borderRadius: '10px'
+    }
+  }
+
+  exitTodayData = (e) => {
+    e.preventDefault();
+    console.log('clicked button')
+    this.setState({
+      todayDataOpen: !this.state.todayDataOpen
+    })
+  }
+
   render() {
     return (
-      <div style={nasaTodayContainerStyle}>
+      <div style={this.getDailyNasaStyle()}>
         <header className="container-header">
-          <h4>{this.state.title}</h4>
-          <object data={this.state.imageUrl}
-          title="nasa-today" width="560" height="315"></object>
-          <p>{this.state.explanation}</p>
+          <NasaTodayExitButton handleClick={this.exitTodayData}/>
+          <NasaTodayTitle title={this.state.title} />
+          <NasaTodayMedia mediaUrl={this.state.mediaUrl} />
+          <NasaTodayText explanation={this.state.explanation} />
         </header>
       </div>
     );
@@ -33,7 +70,7 @@ class NasaTodayContainer extends Component {
 }
 
 const nasaTodayContainerStyle = {
-  backgroundColor: '#384639',
+  backgroundColor: '#0b3d91',
   minHeight: '90vh',
   display: 'flex',
   flexDirection: 'column',
@@ -46,6 +83,7 @@ const nasaTodayContainerStyle = {
   width: '95%',
   opacity: '.85',
   zIndex: '9',
+  borderRadius: '10px'
 }
 
 export default NasaTodayContainer;
