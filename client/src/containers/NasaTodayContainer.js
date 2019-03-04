@@ -1,15 +1,14 @@
+//packages
 import React, { Component } from 'react';
-import NasaTodayTitle from '../components/NasaTodayTitle';
-import NasaTodayMedia from '../components/NasaTodayMedia';
-import NasaTodayText from '../components/NasaTodayText';
-import NasaTodayExitButton from '../components/NasaTodayExitButton';
-import NasaTodayOpenButton from '../components/NasaTodayOpenButton';
+//app components
+import NasaTodayModal from '../components/NasaTodayModal';
+
 
 class NasaTodayContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todayDataOpen: true,
+      ready: false
     }
   }
 
@@ -21,69 +20,33 @@ class NasaTodayContainer extends Component {
       todayDataOpen: true,
       data_date: json.date,
       explanation: json.explanation,
-      mediaType: json.media_type,
       title: json.title,
-      mediaUrl: json.url
-    })
-  }
-
-  getDailyNasaStyle = () => {
-    return {
-      //nasa blue
-      backgroundColor: '#0b3d91',
-      display: this.state.todayDataOpen ? 'flex' : 'none',
-      minHeight: '90vh',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: 'calc(10px + 2vmin)',
-      color: '#fff',
-      textAlign: 'center',
-      padding: '10px',
-      width: '95%',
-      opacity: '.85',
-      zIndex: '9',
-      borderRadius: '10px'
-    }
-  }
-
-  exitTodayData = (e) => {
-    e.preventDefault();
-    console.log('clicked button')
-    this.setState({
-      todayDataOpen: !this.state.todayDataOpen
+      mediaUrl: json.url,
+      mediaHdUrl: json.hdurl,
+      mediaType: json.media_type,
+      ready: true
     })
   }
 
   render() {
+    console.log('this.state --> ', this.state);
+    const { ready } = this.state;
+    const { todayDataOpen, exitTodayData } = this.props;
     return (
-      <div style={this.getDailyNasaStyle()}>
-        <header className="container-header">
-          <NasaTodayExitButton handleClick={this.exitTodayData}/>
-          <NasaTodayTitle title={this.state.title} />
-          <NasaTodayMedia mediaUrl={this.state.mediaUrl} />
-          <NasaTodayText explanation={this.state.explanation} />
-        </header>
+      <div>
+      {ready ?
+        <NasaTodayModal
+        title={this.state.title}
+        mediaUrl={this.state.mediaUrl}
+        mediaHdUrl={this.state.mediaHdUrl}
+        mediaType={this.state.mediaType}
+        explanation={this.state.explanation}
+        todayDataOpen={todayDataOpen}
+        exitTodayData={exitTodayData}/>
+        : <p>loading...</p>}
       </div>
-    );
+    )
   }
-}
-
-const nasaTodayContainerStyle = {
-  backgroundColor: '#0b3d91',
-  minHeight: '90vh',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: 'calc(10px + 2vmin)',
-  color: '#fff',
-  textAlign: 'center',
-  padding: '10px',
-  width: '95%',
-  opacity: '.85',
-  zIndex: '9',
-  borderRadius: '10px'
 }
 
 export default NasaTodayContainer;

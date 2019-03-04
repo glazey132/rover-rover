@@ -2,7 +2,7 @@ import React from 'react';
 
 const NasaTodayText = props => {
   return (
-    <div style={nasaTodayTextStyle}>
+    <div>
       <span style={textSectionStyle}>
         <p style={explanationTextStyle}>{props.explanation}</p>
       </span>
@@ -10,15 +10,13 @@ const NasaTodayText = props => {
   )
 }
 
-const nasaTodayTextStyle = {
-  //nasa red
-  backgroundColor: '#fc3d21',
-  color: '#fff',
-  borderRadius: '10px'
-}
-
 const textSectionStyle = {
-  display: 'flex'
+  borderRadius: '10px',
+  textAlign: 'left',
+  color: 'black',
+  backgroundColor: 'white',
+  display: 'flex',
+  border: '1.5px solid black',
 }
 
 const explanationTextStyle = {

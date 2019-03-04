@@ -1,15 +1,12 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 const NasaTodayExitButton = props => {
-  return <button style={nasaTodayExitButtonStyle} onClick={(e) => props.handleClick(e)}><span>X</span></button>
+  return <Button style={nasaTodayExitButtonStyle} onClick={(e) => props.handleClick(e)}>Exit</Button>
 }
 
 const nasaTodayExitButtonStyle = {
-  backgroundColor: 'pink',
-  borderRadius: '50%',
-  display: 'block',
   float: 'right',
-  marginRight: '.5vw'
 }
 
 export default NasaTodayExitButton;
