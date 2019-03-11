@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 import NasaTodayContainer from './containers/NasaTodayContainer';
@@ -57,7 +58,7 @@ class App extends Component {
                 <Nav.Link href="#home">Home</Nav.Link>
                 <Nav.Link href="#link">Link</Nav.Link>
                 <NavDropdown title="Choose a Rover" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Opportunity</NavDropdown.Item>
+                  <NavDropdown.Item><Link to="/opportunity">Opportunity</Link></NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Curiosity</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">Spirit</NavDropdown.Item>
                   <NavDropdown.Divider />
