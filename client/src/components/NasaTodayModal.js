@@ -2,7 +2,7 @@
 import React from 'react';
 
 // app components
-import NasaTodayText from './NasaTodayText';
+import HeaderText from './HeaderText';
 import NasaTodayMedia from './NasaTodayMedia';
 
 //bootstrap components
@@ -24,7 +24,7 @@ const NasaTodayModal = props => {
       </Modal.Header>
       <Modal.Body style={modalBodyStyle}>
         <NasaTodayMedia style={modalItemStyle} mediaUrl={mediaUrl} mediaHdUrl={mediaHdUrl} mediaType={mediaType}/>
-        <NasaTodayText style={modalItemStyle} explanation={explanation} />
+        <HeaderText style={modalItemStyle} text={explanation} />
       </Modal.Body>
     </Modal>
   )
