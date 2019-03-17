@@ -10,20 +10,18 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-// <div style={OpportunityContainerStyle}>
-//   <HeaderText text={'Opportunity Rover'}/>
-//   <div style={PictureSectionStyle}>pic section</div>
-//   <div style={TextSectionStyle}><span>Text section</span></div>
-// </div>
-
 
 class OpportunityContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      camera: null,
+      submitted: false
+    }
   }
 
   render() {
+    const { submitted } = this.state;
     return (
       <div style={OpportunityContainerPageStyle} className="overlay">
         <Container fluid={true}>
@@ -32,7 +30,12 @@ class OpportunityContainer extends Component {
           </Row>
           <Row>
             <Col>
-              <ControlledCarousel />
+              {submitted ?
+                <ControlledCarousel />
+                :
+                <div>
+                  <p>Choose a camera</p>
+                </div>}
             </Col>
           </Row>
         </Container>
@@ -65,5 +68,7 @@ const TextSectionStyle = {
   height: '20%',
   marginTop: ''
 }
+
+// <CameraMenu rover={'opportunity'}/>
 
 export default OpportunityContainer;

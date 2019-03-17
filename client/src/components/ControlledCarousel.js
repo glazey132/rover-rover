@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../logo.svg'
 
 //bootstrap
 import Carousel from 'react-bootstrap/Carousel';
@@ -15,7 +16,7 @@ class ControlledCarousel extends Component {
         <Carousel.Item style={unsetPositionStyle}>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=First slide&bg=373940"
+            src={logo}
             alt="First slide"
           />
           <Carousel.Caption style={unsetPositionStyle}>
@@ -26,7 +27,7 @@ class ControlledCarousel extends Component {
         <Carousel.Item style={unsetPositionStyle}>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=Second slide&bg=282c34"
+            src={logo}
             alt="Second slide"
           />
 
@@ -38,7 +39,7 @@ class ControlledCarousel extends Component {
         <Carousel.Item style={unsetPositionStyle}>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=Third slide&bg=20232a"
+            src={logo}
             alt="Third slide"
           />
 
