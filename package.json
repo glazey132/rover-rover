@@ -1,13 +1,13 @@
 {
-  "name": "client",
+  "name": "rover-rover",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "react": "^16.8.3",
+    "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.5",
-    "react-dom": "^16.8.3",
-    "react-router-dom": "^4.3.1",
+    "react-dom": "^16.8.4",
+    "react-router-dom": "^4.4.0",
     "react-scripts": "2.1.5"
   },
   "scripts": {
@@ -24,5 +24,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "main": "index.js",
+  "repository": "https://github.com/glazey132/rover-rover.git",
+  "author": "glazey132 <alglaze132@gmail.com>",
+  "license": "MIT"
 }
