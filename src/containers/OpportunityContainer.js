@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import '../App.css';
 
 import HeaderText from '../components/HeaderText'
+import CameraPicker from '../components/CameraPicker'
 import ControlledCarousel from '../components/ControlledCarousel'
+import Navigation from '../components/Navigation'
 
 //bootstrap components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Badge from 'react-bootstrap/Badge';
 
 
 class OpportunityContainer extends Component {
@@ -21,21 +24,17 @@ class OpportunityContainer extends Component {
   }
 
   render() {
-    const { submitted } = this.state;
     return (
       <div style={OpportunityContainerPageStyle} className="overlay">
         <Container fluid={true}>
           <Row>
-            <Col><HeaderText text={'Opportunity Rover'}/></Col>
+            <Navigation />
           </Row>
           <Row>
             <Col>
-              {submitted ?
-                <ControlledCarousel />
-                :
-                <div>
-                  <p>Choose a camera</p>
-                </div>}
+              <h1>Choose a camera for: <Badge variant="secondary">Opportunity</Badge></h1>
+              <CameraPicker rover={"opportunity"} />
+              <ControlledCarousel />
             </Col>
           </Row>
         </Container>

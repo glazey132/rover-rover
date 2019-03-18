@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeaderText = props => {
+const ModalText = props => {
   return (
     <div>
       <span style={textSectionStyle}>
@@ -27,4 +27,4 @@ const textStyle = {
   padding: '10px'
 }
 
-export default HeaderText;
+export default ModalText;
