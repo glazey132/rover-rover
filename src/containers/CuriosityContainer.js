@@ -14,17 +14,18 @@ import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 
 
-class SpiritContainer extends Component {
+class CuriosityContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       camera: null,
-      submitted: false
+      submitted: false,
+      images: null
     }
   }
 
   async componentDidMount() {
-    const response = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=10&camera=fhaz&api_key=${process.env.REACT_APP_NASA_API_KEY}`);
+    const response = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=${process.env.REACT_APP_NASA_API_KEY}`);
     this.setState({
       images: response.data.photos,
       ready: true
@@ -34,7 +35,7 @@ class SpiritContainer extends Component {
 
   render() {
     return (
-      <div style={SpiritContainerPageStyle} className="overlay">
+      <div style={CuriosityContainerPageStyle} className="overlay">
         <Container fluid={true}>
           <Row>
             <Navigation />
@@ -42,14 +43,18 @@ class SpiritContainer extends Component {
           {this.state.ready ?
             <Row>
               <Col>
-                <h1>Choose a camera for: <Badge variant="secondary">Spirit</Badge></h1>
-                <CameraPicker rover={"spirit"} />
+                <div style={{'display': 'inlineBlock'}}>
+                  <h1>Choose a camera for: <Badge variant="secondary">Curiosity</Badge></h1>
+                  <label for="date">Date</label><input name="date" placeholder="YYYY-MM-DD"/>
+                </div>
+                <CameraPicker rover={"curiosity"} />
                 <ControlledCarousel images={this.state.images}/>
               </Col>
             </Row>
             :
             <h4>loading...</h4>
-          }
+            }
+
         </Container>
       </div>
     )
@@ -57,7 +62,7 @@ class SpiritContainer extends Component {
 }
 
 
-const SpiritContainerPageStyle = {
+const CuriosityContainerPageStyle = {
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
@@ -81,4 +86,4 @@ const TextSectionStyle = {
   marginTop: ''
 }
 
-export default SpiritContainer;
+export default CuriosityContainer;

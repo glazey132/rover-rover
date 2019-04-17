@@ -30,7 +30,7 @@ class CameraPicker extends Component {
     return (
       <div style={ToolbarStyle}>
         <ButtonToolbar>
-          <ButtonGroup>
+          <ButtonGroup style={ButtonGroupStyle}>
             {this.state.cameras.map(camera =>
               <CameraButton key={this.state.cameras.indexOf(camera)} cameraName={camera} />)}
           </ButtonGroup>
@@ -42,7 +42,12 @@ class CameraPicker extends Component {
 const ToolbarStyle = {
   display: 'flex',
   textAlign: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  flexWrap: 'wrap'
+}
+
+const ButtonGroupStyle = {
+  flexWrap: 'wrap'
 }
 
 export default CameraPicker;

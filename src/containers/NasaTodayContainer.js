@@ -15,7 +15,6 @@ class NasaTodayContainer extends Component {
   async componentDidMount(){
     const result = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}`)
     const json = await result.json();
-    console.log('the json ---> ', json);
     this.setState({
       todayDataOpen: true,
       data_date: json.date,

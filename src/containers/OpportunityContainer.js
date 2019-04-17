@@ -1,5 +1,6 @@
 //packages
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../App.css';
 
 import HeaderText from '../components/HeaderText'
@@ -23,6 +24,15 @@ class OpportunityContainer extends Component {
     }
   }
 
+  async componentDidMount() {
+    const response = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1&camera=fhaz&api_key=${process.env.REACT_APP_NASA_API_KEY}`);
+    this.setState({
+      images: response.data.photos,
+      ready: true
+    })
+    console.log('the json -> ', response);
+  }
+
   render() {
     return (
       <div style={OpportunityContainerPageStyle} className="overlay">
@@ -30,13 +40,17 @@ class OpportunityContainer extends Component {
           <Row>
             <Navigation />
           </Row>
-          <Row>
-            <Col>
-              <h1>Choose a camera for: <Badge variant="secondary">Opportunity</Badge></h1>
-              <CameraPicker rover={"opportunity"} />
-              <ControlledCarousel />
-            </Col>
-          </Row>
+          {this.state.ready ?
+            <Row>
+              <Col>
+                <h1>Choose a camera for: <Badge variant="secondary">Opportunity</Badge></h1>
+                <CameraPicker rover={"opportunity"} />
+                <ControlledCarousel images={this.state.images}/>
+              </Col>
+            </Row>
+            :
+            <h4>loading...</h4>
+          }
         </Container>
       </div>
     )

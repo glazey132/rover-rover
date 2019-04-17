@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import CuriousityContainer from '../containers/CuriousityContainer';
+import CuriosityContainer from '../containers/CuriosityContainer';
 import OpportunityContainer from '../containers/OpportunityContainer';
 import SpiritContainer from '../containers/SpiritContainer';
 
@@ -11,7 +11,7 @@ function Router() {
     <div>
       <Route path={'/'} exact component={App} />
       <Route path={'/opportunity'} exact component={OpportunityContainer} />
-      <Route path={'/curiousity'} exact component={CuriousityContainer} />
+      <Route path={'/curiosity'} exact component={CuriosityContainer} />
       <Route path={'/spirit'} exact component={SpiritContainer} />
     </div>
   )

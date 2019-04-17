@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 //bootstrap components
 import Nav from 'react-bootstrap/Nav';
@@ -27,17 +26,13 @@ const Navigation = props => {
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <NavDropdown title="Choose a Rover" id="basic-nav-dropdown">
-            <NavDropdown.Item><Link to="/opportunity">Opportunity</Link></NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Curiosity</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Spirit</NavDropdown.Item>
+            <NavDropdown.Item href="/opportunity">Opportunity</NavDropdown.Item>
+            <NavDropdown.Item href="/curiousity">Curiousity</NavDropdown.Item>
+            <NavDropdown.Item href="/spirit">Spirit</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Nasa Rover API information</NavDropdown.Item>
+            <NavDropdown.Item href="https://api.nasa.gov/api.html#MarsPhotos">Nasa Rover API information</NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
       </Navbar.Collapse>
     </Navbar>
   )
