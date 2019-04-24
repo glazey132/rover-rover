@@ -7,6 +7,7 @@ import NasaTodayContainer from './containers/NasaTodayContainer';
 import Navigation from './components/Navigation';
 import NotificationSection from './components/NotificationSection';
 import GeoSection from './components/GeoSection';
+import CMESection from './components/CMESection';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -39,7 +40,7 @@ class App extends Component {
 
     // console.log('the asteroidJson ....=> ', asteroidJson);
 
-    console.log('the notification json => ',  notificationJson);
+    //console.log('the notification json => ',  notificationJson);
     notificationJson.forEach(note => {
       if(note.messageType === 'Report' && notification === null) {
         notification = note;
@@ -82,7 +83,7 @@ class App extends Component {
                 <GeoSection></GeoSection>
               </Col>
             </Row>
-            <Row style={bottomRowStyle} noGutters={true}><Col style={bottomColumnStyle}></Col></Row>
+            <Row style={bottomRowStyle} noGutters={true}><Col style={bottomColumnStyle}><CMESection /></Col></Row>
           </Container>
         }
       </div>

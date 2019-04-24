@@ -28,7 +28,6 @@ class NasaTodayContainer extends Component {
   }
 
   render() {
-    console.log('this.state --> ', this.state);
     const { ready } = this.state;
     const { todayDataOpen, exitTodayData } = this.props;
     return (
