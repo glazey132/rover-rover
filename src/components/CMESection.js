@@ -1,5 +1,9 @@
 import React from 'react';
 
+import SimpleBarGraph from './charts/SimpleBarGraph';
+
+import {ResponsiveContainer} from 'recharts';
+
 import Button from 'react-bootstrap/Button';
 
 class CMESection extends React.Component {
@@ -38,30 +42,16 @@ class CMESection extends React.Component {
     render() {
         const { cmeData } = this.state;
         return (
-            <div style={cmeSectionStyle}>
-            {cmeData !== null ? 
-                cmeData.data.map(item =>
-                    <ul style={cmeItemSectionStyle}>
-                        <li style={cmeItemStyle}>time: {item.time21_5}</li>
-                        <li style={cmeItemStyle}>id: {item.associatedCMEID}</li>
-                        <li style={cmeItemStyle}>catalog: {item.catalog}</li>
-                        <li style={cmeItemStyle}>half angle: {item.halfAngle}</li>
-                        <li style={cmeItemStyle}>is most accurate: {item.isMostAccurate}</li>
-                        <li style={cmeItemStyle}>latitude: {item.latitude}</li>
-                        <li style={cmeItemStyle}>longitude: {item.longitude}</li>
-                        <li style={cmeItemStyle}>note: {item.note}</li>
-                        <li style={cmeItemStyle}>speed: {item.speed}</li>
-                        <li style={cmeItemStyle}>type: {item.type}</li>
-                    </ul>
-                    
-                )
-                :
-                <li>Unable to fetch data</li>
-            }
-            </div>
-            
+            <ResponsiveContainer style={graphContainerStyle}>
+                <SimpleBarGraph />
+            </ResponsiveContainer>
         )
     }
+}
+
+const graphContainerStyle = {
+    padding: '20px',
+    display: 'inline-flex'
 }
 
 const cmeItemSectionStyle = {
