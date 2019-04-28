@@ -13,6 +13,7 @@
     "react-geolocated": "^2.4.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.5",
+    "react-sizeme": "^2.6.2",
     "recharts": "^1.5.0"
   },
   "scripts": {
