@@ -29,6 +29,7 @@ class GeoSection extends Component {
             </td><td style={tableLabelCellStyle}>{this.props.coords.latitude}</td>
             <td style={tableLabelCellStyle}><Badge pill variant="primary">Longitude: </Badge></td><td style={tableLabelCellStyle}>{this.props.coords.longitude}</td></tr>
           <tr style={geoColumnStyle}><td><LocationImage coords={this.props.coords}/></td></tr>
+          <tr><small>This is the most recent photo that Nasa LandSat imagery has of your location</small></tr>
         </tbody>
     </table>
     : <table style={tableSectionStyle}><tbody><tr><td><p style={geoNotificationTextStyle}>Getting the location data&hellip;</p></td></tr></tbody></table>

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import sizeMe from 'react-sizeme'
+
 import SimpleBarGraph from './charts/SimpleBarGraph';
 
 import {ResponsiveContainer} from 'recharts';
@@ -41,10 +43,12 @@ class CMESection extends React.Component {
 
     render() {
         const { cmeData } = this.state;
+        const { size } = this.props;
+        console.log('the cme Data ', cmeData)
         return (
-            <ResponsiveContainer style={graphContainerStyle}>
-                <SimpleBarGraph />
-            </ResponsiveContainer>
+            <div style={graphContainerStyle}>
+                <SimpleBarGraph data={cmeData} size={size} />
+            </div>
         )
     }
 }
@@ -70,4 +74,4 @@ const cmeItemStyle = {
     listStyle: 'none'
 }
 
-export default CMESection;
+export default sizeMe({ monitorHeight: true })(CMESection);
