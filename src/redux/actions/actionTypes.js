@@ -1,0 +1,2 @@
+export const REQUEST_CME_DATA = 'REQUEST_CME_DATA';
+export const RECEIVE_CME_DATA = 'RECEIVE_CME_DATA';

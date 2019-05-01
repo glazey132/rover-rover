@@ -5,7 +5,6 @@ import {geolocated} from 'react-geolocated';
 import LocationImage from './LocationImage';
 
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 
 
 class GeoSection extends Component {
@@ -26,8 +25,14 @@ class GeoSection extends Component {
           <tr style={coordsSectionStyle}>
             <td style={tableLabelCellStyle}>
               <Badge pill variant="primary">Latitude: </Badge>
-            </td><td style={tableLabelCellStyle}>{this.props.coords.latitude}</td>
-            <td style={tableLabelCellStyle}><Badge pill variant="primary">Longitude: </Badge></td><td style={tableLabelCellStyle}>{this.props.coords.longitude}</td></tr>
+            </td>
+            <td style={tableLabelCellStyle}>{this.props.coords.latitude}</td>
+            <br />
+            <td style={tableLabelCellStyle}>
+              <Badge pill variant="primary">Longitude: </Badge>
+            </td>
+            <td style={tableLabelCellStyle}>{this.props.coords.longitude}</td>
+            </tr>
           <tr style={geoColumnStyle}><td><LocationImage coords={this.props.coords}/></td></tr>
           <tr><small>This is the most recent photo that Nasa LandSat imagery has of your location</small></tr>
         </tbody>
@@ -38,15 +43,11 @@ class GeoSection extends Component {
     
 }
 
-const showWorldButtonStyle = {
-  marginBottom: '5px'
-}
-
 const geoNotificationTextStyle = {
   color: '#0066b4'
 }
 const coordsSectionStyle = {
-    display: 'inline',
+    display: 'inline-flex',
     margin: '5px'
 }
 
@@ -65,13 +66,6 @@ const tableLabelCellStyle = {
     borderBottom: 'dashed',
     margin: '0 auto',
     padding: '0'
-}
-
-const textStyle = {
-  flex: '1',
-  lineHeight: '1.2',
-  fontSize: 'initial',
-  padding: '10px'
 }
 
 export default geolocated({

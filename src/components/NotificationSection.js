@@ -9,8 +9,6 @@ const NotificationSection = props => (
 );
 
 const notificationSectionStyle = {
-  background: '#e9ecef',
-  padding: '2em',
   fontSize: 'calc(8px + .5em)',
   color: 'black',
   paddingLeft: '10px'

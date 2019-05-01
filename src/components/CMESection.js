@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import sizeMe from 'react-sizeme'
 
 import SimpleBarGraph from './charts/SimpleBarGraph';
@@ -7,6 +10,8 @@ import SimpleBarGraph from './charts/SimpleBarGraph';
 import {ResponsiveContainer} from 'recharts';
 
 import Button from 'react-bootstrap/Button';
+
+import { requestCmeData } from '../redux/actions/fetch-cme-data';
 
 class CMESection extends React.Component {
     constructor(props) {
@@ -19,35 +24,37 @@ class CMESection extends React.Component {
     
 
    async componentDidMount() {
-        fetch(`https://cors-anywhere.herokuapp.com/https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/CMEAnalysis`)
-        .then(response => {
-            response.json().then(data => ({
-                data: data,
-                status: response.status
-            }))
-        .then(res => {
-            console.log('res.data => ', res.data)
-            this.setState({
-                cmeData: res
-            })
-        })
-        .catch(error => {  
-        console.log('Request failed', error)  
-        });
-        })
+       this.props.requestCmeData();
+        // fetch(`https://cors-anywhere.herokuapp.com/https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/CMEAnalysis`)
+        // .then(response => {
+        //     response.json().then(data => ({
+        //         data: data,
+        //         status: response.status
+        //     }))
+        // .then(res => {
+        //     console.log('res.data => ', res.data)
+        //     this.setState({
+        //         cmeData: res
+        //     })
+        // })
+        // .catch(error => {  
+        // console.log('Request failed', error)  
+        // });
+        // })
     }
 
-    checkState = () => {
-        console.log(this.state)
+
+    checkProps = () => {
+        console.log('clicked!!!')
+        console.log('the props in cme => ', this.props)
     }
 
     render() {
         const { cmeData } = this.state;
         const { size } = this.props;
-        console.log('the cme Data ', cmeData)
         return (
             <div style={graphContainerStyle}>
-                <SimpleBarGraph data={cmeData} size={size} />
+                <SimpleBarGraph data={this.props.data} size={size} />
             </div>
         )
     }
@@ -74,4 +81,10 @@ const cmeItemStyle = {
     listStyle: 'none'
 }
 
-export default sizeMe({ monitorHeight: true })(CMESection);
+const mapStateToProps = state => ({ data: state.cmeData })
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators({ requestCmeData }, dispatch)
+
+const sizedApp = sizeMe({ monitorHeight: true })(CMESection);
+export default connect(mapStateToProps, mapDispatchToProps)(sizedApp);

@@ -75,15 +75,15 @@ class App extends Component {
           :
           <Container fluid>
             <Navigation />
-            <Row style={topRowStyle} noGutters={true}>
-              <Col style={notificationColumnStyle}>
+            <Row>
+              <Col xs={12}  sm={12} lg={6} style={notificationColumnStyle}>
                 <NotificationSection notification={this.state.notification} />
               </Col>
-              <Col style={geoColumnStyle}>
+              <Col xs={12} sm={12} lg={6} style={geoColumnStyle}>
                 <GeoSection></GeoSection>
               </Col>
             </Row>
-            <Row style={bottomRowStyle} noGutters={true}><Col style={bottomColumnStyle}><CMESection /></Col></Row>
+            <Row style={bottomRowStyle} noGutters={true}><Col xs={12} style={bottomColumnStyle}><CMESection /></Col></Row>
           </Container>
         }
       </div>
@@ -96,7 +96,11 @@ const notificationColumnStyle = {
   maxHeight: '50vh',
   overflow: 'scroll',
   borderRadius: '10px',
-  margin: '5px'
+  margin: '5px',
+  flex: '1',
+  background: '#e9ecef',
+  padding: '2em',
+  maxWidth: '95%'
 }
 
 const geoColumnStyle = {
@@ -104,18 +108,19 @@ const geoColumnStyle = {
   maxHeight: '50vh',
   margin: '5px',
   borderRadius: '10px',
-  textAlign: 'center',
   color: 'black',
   border: '1.5px solid black',
   background: 'white',
-  overflow: 'scroll'
+  overflow: 'scroll',
+  maxWidth: '95%',
+  textAlign: 'center'
 }
 
 const bottomRowStyle = {
   height: '50vh',
   maxHeight: '50vh',
-  margin: '10px 5px',
-  borderRadius: '10px'
+  margin: '10px -10px',
+  marginBottom: '20px'
 }
 
 const bottomColumnStyle = {
@@ -123,11 +128,8 @@ const bottomColumnStyle = {
   height: '50vh',
   maxHeight: '50vh',
   background: '#e9ecef',
-  marginTop: '5px'
+  marginTop: '5px',
+  borderRadius: '10px'
 }
 
-const topRowStyle = {
-  height: '50vh',
-  maxHeight: "50vh"
-}
 export default App;

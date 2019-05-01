@@ -16,6 +16,10 @@ class SimpleBarChart extends React.Component {
     this.state = {}
   }
 
+  async componentDidMount() {
+
+  }
+
 	render () {
     const { width } = this.props.size
     console.log('the props in bar grph => ', this.props)
