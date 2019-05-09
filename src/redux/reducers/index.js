@@ -22,6 +22,27 @@ const cmeData = (state = {
     }
 }
 
+const latestPhotos = (state = {
+    isFetching: false,
+    timeReceived: null,
+    error: false,
+    latestOpportunityPhotos: []
+}, action) => {
+    console.log('action in latest photos reducer => ', action)
+    switch(action.type) {
+        case types.RECEIVE_LATEST_OPPORTUNITY_PHOTOS:
+        console.log('receive opportunity photos in reducer. action => ', action.data.latest_photos)
+        return {
+            ...state,
+            isFetching: false,
+            latestOpportunityPhotos: action.data.latest_photos,
+            timeReceived: action.receivedAt
+        }
+        default:
+            return state
+    }
+}
+
 const selectedRoverCamera = (state = { }, action) => {
     switch(action.type) {
         default:
@@ -31,6 +52,7 @@ const selectedRoverCamera = (state = { }, action) => {
 
 const rootReducer = combineReducers({
     cmeData,
+    latestPhotos,
     selectedRoverCamera
 })
 

@@ -1,21 +1,12 @@
-import { take, takeLatest, put, call, fork, select } from 'redux-saga/effects'
-import { receiveCmeData } from '../actions/fetch-cme-data';
-import { fetchData } from '../api/cme-api';
-import * as types from '../actions/actionTypes';
+import { all, fork } from 'redux-saga/effects'
 
-function* fetchCmeData(action) {
-    console.log('in fetch cme data in saga ')
-    try {
-        const data = yield call(fetchData)
-        yield put(receiveCmeData(data))
-    } catch(error) {
-        console.log('error from cme saga => ', error)
-    }
-    
-}
+import * as cmeSaga from './cme-saga';
+import * as photoSaga from './rover-photo-saga';
 
 
-
-export default function* watchRequestCmeData() {
-    yield takeLatest(types.REQUEST_CME_DATA, fetchCmeData);
+export default function* rootSager() {
+    yield all([
+        ...Object.values(cmeSaga),
+        ...Object.values(photoSaga)
+    ].map(fork))
 }

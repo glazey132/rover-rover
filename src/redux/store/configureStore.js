@@ -1,18 +1,17 @@
 /* Redux */
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 import rootReducer from '../reducers/index'
 /* redux middleware */
 import createSagaMiddleware from 'redux-saga'
 import { createLogger } from 'redux-logger'
 
 export default function configureStore() {
-    const middleware = []
+    const logger = createLogger()
     const sagaMiddleware = createSagaMiddleware()
-    // middleware.push(createLogger())
-    // middleware.push(sagaMiddleware)
-
+    const middleware = [logger, sagaMiddleware]
+    
     return {
-        ...createStore(rootReducer, applyMiddleware(sagaMiddleware)),
+        ...createStore(rootReducer, applyMiddleware(...middleware)),
         runSaga: sagaMiddleware.run,
     }
 }

@@ -54,15 +54,19 @@ class CMESection extends React.Component {
         const { size } = this.props;
         return (
             <div style={graphContainerStyle}>
+                <h6 style={titleStyle}>Most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</h6>
                 <SimpleBarGraph data={this.props.data} size={size} />
             </div>
         )
     }
 }
 
-const graphContainerStyle = {
-    padding: '20px',
+const titleStyle = {
     display: 'inline-flex'
+}
+
+const graphContainerStyle = {
+    padding: '20px'
 }
 
 const cmeItemSectionStyle = {

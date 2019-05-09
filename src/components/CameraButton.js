@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 const CameraButton = props => {
   return (
-    <Button style={ButtonStyle}>{props.cameraName}</Button>
+    <Button style={ButtonStyle} size="sm">{props.cameraName}</Button>
   )
 };
 

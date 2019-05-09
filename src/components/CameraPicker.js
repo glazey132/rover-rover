@@ -23,9 +23,7 @@ class CameraPicker extends Component {
     }
   }
 
-  componentDidMount() {
 
-  }
   render() {
     return (
       <div style={ToolbarStyle}>

@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 //bootstrap
 import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
 
+
+
 class ControlledCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {}
+    console.log('this.props cc constructor +> ', this.props)
   }
 
+  componentDidMount() {
+    console.log('this.props cc comp did mount +> ', this.props)
+  }
+
+  
+
   render() {
+    console.log('this.props cc render +> ', this.props)
     return (
+      this.props.photos ? 
       <Carousel style={unsetPositionStyle}>
-        {this.props.images.map(image =>
+        {this.props.photos.map(image =>
           <Carousel.Item key={image.id} style={unsetPositionStyle}>
           <Image src={image.img_src} thumbnail />
             <Carousel.Caption style={unsetPositionStyle}>
@@ -24,11 +36,20 @@ class ControlledCarousel extends Component {
           </Carousel.Item>
         )}
       </Carousel>
+      :
+      <Carousel style={unsetPositionStyle}>
+
+      </Carousel>
     )
+    
   }
 }
 
 const unsetPositionStyle = {
   position: 'unset'
 }
-export default ControlledCarousel;
+
+
+const mapStateToProps = state => ({ latestOpportunityPhotos: state.latestOpportunityPhotos })
+
+export default connect(mapStateToProps, null)(ControlledCarousel);
