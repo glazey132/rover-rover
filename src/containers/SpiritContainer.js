@@ -3,15 +3,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../App.css';
 
-import CameraPicker from '../components/CameraPicker'
-import ControlledCarousel from '../components/ControlledCarousel'
-import Navigation from '../components/Navigation'
+import CameraPicker from '../components/CameraPicker';
+import ControlledCarousel from '../components/ControlledCarousel';
+import Navigation from '../components/Navigation';
+import DatePicker from '../components/DatePicker';
 
 //bootstrap components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
+
+//redux
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { requestLatestSpiritPhotos  } from '../redux/actions/fetch-latest-spirit-photos';
 
 
 class SpiritContainer extends Component {
@@ -21,15 +28,7 @@ class SpiritContainer extends Component {
       camera: null,
       submitted: false
     }
-  }
-
-  async componentDidMount() {
-    const response = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=10&camera=fhaz&api_key=${process.env.REACT_APP_NASA_API_KEY}`);
-    this.setState({
-      images: response.data.photos,
-      ready: true
-    })
-    console.log('the json -> ', response);
+    this.props.requestLatestSpiritPhotos()
   }
 
   render() {
@@ -39,17 +38,23 @@ class SpiritContainer extends Component {
           <Row>
             <Navigation />
           </Row>
-          {this.state.ready ?
+          <React.Fragment>
+
+          </React.Fragment>
             <Row>
               <Col>
                 <h1>Choose a camera for: <Badge variant="secondary">Spirit</Badge></h1>
-                <CameraPicker rover={"spirit"} />
-                <ControlledCarousel images={this.state.images}/>
+                <DatePicker />
               </Col>
             </Row>
-            :
-            <h4>loading...</h4>
-          }
+            <Row>
+              <Col>
+                <CameraPicker rover={"spirit"} />
+                {this.props.latestSpiritPhotos ?  <ControlledCarousel rover={"spirit"} photos={this.props.latestSpiritPhotos}/>
+                :
+                  <span><h4>loading...</h4></span>}
+              </Col>
+            </Row>
         </Container>
       </div>
     )
@@ -81,4 +86,11 @@ const TextSectionStyle = {
   marginTop: ''
 }
 
-export default SpiritContainer;
+const mapStateToProps = state => ({ latestSpiritPhotos: state.latestPhotos.latestSpiritPhotos })
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    requestLatestSpiritPhotos
+  }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpiritContainer);

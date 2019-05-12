@@ -1,6 +1,7 @@
 import * as types from "./actionTypes";
 
 export const requestLatestCuriosityPhotos = () => {
+    console.log('requestions curii photos in action creator')
     return {
         type: types.REQUEST_LATEST_CURIOSITY_PHOTOS,
     }

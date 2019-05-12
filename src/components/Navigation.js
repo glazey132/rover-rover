@@ -27,7 +27,7 @@ const Navigation = props => {
           <Nav.Link href="/">Home</Nav.Link>
           <NavDropdown title="Choose a Rover" id="basic-nav-dropdown">
             <NavDropdown.Item href="/opportunity">Opportunity</NavDropdown.Item>
-            <NavDropdown.Item href="/curiousity">Curiousity</NavDropdown.Item>
+            <NavDropdown.Item href="/curiosity">Curiosity</NavDropdown.Item>
             <NavDropdown.Item href="/spirit">Spirit</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="https://api.nasa.gov/api.html#MarsPhotos">Nasa Rover API information</NavDropdown.Item>

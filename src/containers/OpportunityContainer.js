@@ -30,10 +30,6 @@ class OpportunityContainer extends Component {
     this.props.requestLatestOpportunityPhotos();
   }
 
-  componentDidMount() {
-    
-  }
-
   render() {
     return (
       <div style={OpportunityContainerPageStyle} className="overlay">

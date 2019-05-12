@@ -6,6 +6,7 @@ import '../App.css';
 import CameraPicker from '../components/CameraPicker'
 import ControlledCarousel from '../components/ControlledCarousel'
 import Navigation from '../components/Navigation'
+import DatePicker from '../components/DatePicker';
 
 //bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -13,6 +14,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 
+//redux
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { requestLatestCuriosityPhotos  } from '../redux/actions/fetch-latest-curiosity-photos';
 
 class CuriosityContainer extends Component {
   constructor(props) {
@@ -22,15 +28,7 @@ class CuriosityContainer extends Component {
       submitted: false,
       images: null
     }
-  }
-
-  async componentDidMount() {
-    const response = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=${process.env.REACT_APP_NASA_API_KEY}`);
-    this.setState({
-      images: response.data.photos,
-      ready: true
-    })
-    console.log('the json -> ', response);
+    this.props.requestLatestCuriosityPhotos();
   }
 
   render() {
@@ -40,21 +38,23 @@ class CuriosityContainer extends Component {
           <Row>
             <Navigation />
           </Row>
-          {this.state.ready ?
+          <React.Fragment>
             <Row>
               <Col>
-                <div style={{'display': 'inlineBlock'}}>
-                  <h1>Choose a camera for: <Badge variant="secondary">Curiosity</Badge></h1>
-                  <label for="date">Date</label><input name="date" placeholder="YYYY-MM-DD"/>
-                </div>
-                <CameraPicker rover={"curiosity"} />
-                <ControlledCarousel images={this.state.images}/>
+                <h1>Choose a camera for: <Badge variant="secondary">Curiosity</Badge></h1>
+                <DatePicker />
               </Col>
             </Row>
-            :
-            <h4>loading...</h4>
-            }
+            <Row>
+              <Col>
+                <CameraPicker rover={"curiosity"} />
+                 {this.props.latestCuriosityPhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.latestCuriosityPhotos}/>
+                  :
+                  <span><h4>loading...</h4></span>}
 
+              </Col>
+            </Row>
+          </React.Fragment>
         </Container>
       </div>
     )
@@ -86,4 +86,11 @@ const TextSectionStyle = {
   marginTop: ''
 }
 
-export default CuriosityContainer;
+const mapStateToProps = state => ({ latestCuriosityPhotos: state.latestPhotos.latestCuriosityPhotos })
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    requestLatestCuriosityPhotos
+  }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(CuriosityContainer);

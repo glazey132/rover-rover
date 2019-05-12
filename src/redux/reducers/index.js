@@ -26,7 +26,8 @@ const latestPhotos = (state = {
     isFetching: false,
     timeReceived: null,
     error: false,
-    latestOpportunityPhotos: []
+    latestOpportunityPhotos: [],
+    latestCuriosityPhotos: [],
 }, action) => {
     console.log('action in latest photos reducer => ', action)
     switch(action.type) {
@@ -36,6 +37,22 @@ const latestPhotos = (state = {
             ...state,
             isFetching: false,
             latestOpportunityPhotos: action.data.latest_photos,
+            timeReceived: action.receivedAt
+        }
+        case types.RECEIVE_LATEST_CURIOSITY_PHOTOS:
+        console.log('receive latests curiosity photos in reducer. action -> ', action.data.latest_photos)
+        return {
+            ...state,
+            isFetching: false,
+            latestCuriosityPhotos: action.data.latest_photos,
+            timeReceived: action.receivedAt
+        }
+        case types.RECEIVE_LATEST_SPIRIT_PHOTOS:
+        console.log('receive latests curiosity photos in reducer. action -> ', action.data.latest_photos)
+        return {
+            ...state,
+            isFetching: false,
+            latestSpiritPhotos: action.data.latest_photos,
             timeReceived: action.receivedAt
         }
         default:

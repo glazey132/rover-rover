@@ -25,6 +25,7 @@ class App extends Component {
     }
   }
 
+
   async componentDidMount(){
     let notification = null;
 
