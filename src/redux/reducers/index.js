@@ -60,8 +60,16 @@ const latestPhotos = (state = {
     }
 }
 
-const selectedRoverCamera = (state = { }, action) => {
+const selectedRoverCamera = (state = {
+    camera: null
+}, action) => {
     switch(action.type) {
+        case types.SET_CAMERA_TYPE:
+        console.log('actiion in selected rover dcam reducer = > ', action)
+        return {
+            ...state,
+            camera: action.payload.camera
+        }
         default:
             return state
     }

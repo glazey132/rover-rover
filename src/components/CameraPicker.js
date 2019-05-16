@@ -18,7 +18,7 @@ class CameraPicker extends Component {
       this.state.cameras = CAMERA_TYPES[0]
     } else if (this.props.rover === 'curiosity') {
       this.state.cameras = CAMERA_TYPES[1]
-    } else {
+    } else if (this.props.rover === 'spirit') {
       this.state.cameras = CAMERA_TYPES[2]
     }
   }

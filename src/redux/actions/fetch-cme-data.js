@@ -14,7 +14,7 @@ export const receiveCmeData = data => {
         data,
         receivedAt: new Date().setMilliseconds(0)
     }
-}
+};
 
     
 
