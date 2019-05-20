@@ -19,6 +19,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { requestLatestCuriosityPhotos  } from '../redux/actions/fetch-latest-curiosity-photos';
+import { setRover  } from '../redux/actions/set-rover';
 
 class CuriosityContainer extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class CuriosityContainer extends Component {
       images: null
     }
     this.props.requestLatestCuriosityPhotos();
+    this.props.setRover('curiosity');
   }
 
   render() {
@@ -90,7 +92,8 @@ const mapStateToProps = state => ({ latestCuriosityPhotos: state.latestPhotos.la
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-    requestLatestCuriosityPhotos
+    requestLatestCuriosityPhotos,
+    setRover
   }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CuriosityContainer);

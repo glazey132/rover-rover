@@ -7,10 +7,8 @@ const cmeData = (state = {
     error: false,
     cmeData: []
 }, action) => {
-    console.log('action in cmedata reducer => ', action)
     switch(action.type) {
         case types.RECEIVE_CME_DATA:
-        console.log('receive cme data in reducer. action => ', action)
         return {
             ...state,
             isFetching: false,
@@ -29,10 +27,8 @@ const latestPhotos = (state = {
     latestOpportunityPhotos: [],
     latestCuriosityPhotos: [],
 }, action) => {
-    console.log('action in latest photos reducer => ', action)
     switch(action.type) {
         case types.RECEIVE_LATEST_OPPORTUNITY_PHOTOS:
-        console.log('receive opportunity photos in reducer. action => ', action.data.latest_photos)
         return {
             ...state,
             isFetching: false,
@@ -40,7 +36,6 @@ const latestPhotos = (state = {
             timeReceived: action.receivedAt
         }
         case types.RECEIVE_LATEST_CURIOSITY_PHOTOS:
-        console.log('receive latests curiosity photos in reducer. action -> ', action.data.latest_photos)
         return {
             ...state,
             isFetching: false,
@@ -48,7 +43,6 @@ const latestPhotos = (state = {
             timeReceived: action.receivedAt
         }
         case types.RECEIVE_LATEST_SPIRIT_PHOTOS:
-        console.log('receive latests curiosity photos in reducer. action -> ', action.data.latest_photos)
         return {
             ...state,
             isFetching: false,
@@ -60,8 +54,9 @@ const latestPhotos = (state = {
     }
 }
 
-const selectedRoverCamera = (state = {
-    camera: null
+const roverSelections = (state = {
+    camera: null,
+    rover: null
 }, action) => {
     switch(action.type) {
         case types.SET_CAMERA_TYPE:
@@ -69,6 +64,12 @@ const selectedRoverCamera = (state = {
         return {
             ...state,
             camera: action.payload.camera
+        }
+        case types.SET_ROVER:
+        console.log('action in rover selecttions. set rover => ', action);
+        return {
+            ...state,
+            rover: action.rover
         }
         default:
             return state
@@ -78,7 +79,7 @@ const selectedRoverCamera = (state = {
 const rootReducer = combineReducers({
     cmeData,
     latestPhotos,
-    selectedRoverCamera
+    roverSelections
 })
 
 export default rootReducer;

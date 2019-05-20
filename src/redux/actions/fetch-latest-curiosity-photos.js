@@ -1,4 +1,4 @@
-import * as types from "./actionTypes";
+import * as types from './actionTypes';
 
 export const requestLatestCuriosityPhotos = () => {
     console.log('requestions curii photos in action creator')

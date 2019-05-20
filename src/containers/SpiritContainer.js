@@ -19,6 +19,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { requestLatestSpiritPhotos  } from '../redux/actions/fetch-latest-spirit-photos';
+import { setRover  } from '../redux/actions/set-rover';
 
 
 class SpiritContainer extends Component {
@@ -28,7 +29,8 @@ class SpiritContainer extends Component {
       camera: null,
       submitted: false
     }
-    this.props.requestLatestSpiritPhotos()
+    this.props.requestLatestSpiritPhotos();
+    this.props.setRover('spirit');
   }
 
   render() {
@@ -90,7 +92,8 @@ const mapStateToProps = state => ({ latestSpiritPhotos: state.latestPhotos.lates
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-    requestLatestSpiritPhotos
+    requestLatestSpiritPhotos,
+    setRover
   }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpiritContainer);

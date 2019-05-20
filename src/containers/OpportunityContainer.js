@@ -19,6 +19,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { requestLatestOpportunityPhotos  } from '../redux/actions/fetch-latest-opportunity-photos';
+import { setRover  } from '../redux/actions/set-rover';
 
 class OpportunityContainer extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class OpportunityContainer extends Component {
       submitted: false
     }
     this.props.requestLatestOpportunityPhotos();
+    this.props.setRover('opportunity');
   }
 
   render() {
@@ -93,7 +95,8 @@ const mapStateToProps = state => ({ latestOpportunityPhotos: state.latestPhotos.
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ 
-    requestLatestOpportunityPhotos 
+    requestLatestOpportunityPhotos,
+    setRover
   }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(OpportunityContainer);
