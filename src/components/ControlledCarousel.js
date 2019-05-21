@@ -11,17 +11,11 @@ class ControlledCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {}
-    console.log('this.props cc constructor +> ', this.props)
-  }
-
-  componentDidMount() {
-    console.log('this.props cc comp did mount +> ', this.props)
   }
 
   
 
   render() {
-    console.log('this.props cc render +> ', this.props)
     return (
       this.props.photos ? 
       <Carousel style={unsetPositionStyle}>

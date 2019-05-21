@@ -17,10 +17,7 @@ class CameraButton extends Component {
   }
 
   handleClick = (camera, roverFullName) => {
-    console.log('in handleclick of button => ', roverFullName)
-
     if (roverFullName === 'curiosity') { 
-      console.log('yea in curiosity')
       this.props.setCuriosityCameraType(camera);
     } else if (roverFullName === 'opportunity') {
       this.props.setOpportunityCameraType(camera);

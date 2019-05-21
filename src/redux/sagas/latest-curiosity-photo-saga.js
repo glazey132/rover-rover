@@ -4,10 +4,8 @@ import { receiveLatestCuriosityPhotos } from '../actions/fetch-latest-curiosity-
 import * as types from "../actions/actionTypes";
 
 function* fetchLatestCuriosityPhotos(action) {
-    console.log('in fetch latest curiii photos')
     try {
         const data = yield call(fetchRecentCuriosityPhotos)
-        console.log('the data in opp photo saga => ', data)
         yield put(receiveLatestCuriosityPhotos(data))
     } catch(error) {
         console.log('error in latest opp photo saga => ', error);

@@ -7,7 +7,6 @@ export const requestLatestSpiritPhotos = () => {
 }
 
 export const receiveLatestSpiritPhotos = data => {
-    console.log('latest spirit photos received => ', data)
     return {
         type: types.RECEIVE_LATEST_SPIRIT_PHOTOS,
         data,

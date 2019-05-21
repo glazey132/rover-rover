@@ -8,7 +8,6 @@ export const requestCmeData = date => {
 }; 
 
 export const receiveCmeData = data => {
-    console.log('data in receive cme data =>>>> ', data)
     return {
         type: types.RECEIVE_CME_DATA,
         data,

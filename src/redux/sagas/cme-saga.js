@@ -4,7 +4,6 @@ import { receiveCmeData } from '../actions/fetch-cme-data';
 import * as types from "../actions/actionTypes";
 
 function* fetchCmeData() {
-    console.log('in fetch cme data in saga ')
     try {
         const data = yield call(fetchData)
         yield put(receiveCmeData(data))

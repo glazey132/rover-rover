@@ -25,28 +25,6 @@ class CMESection extends React.Component {
 
    async componentDidMount() {
        this.props.requestCmeData();
-        // fetch(`https://cors-anywhere.herokuapp.com/https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/CMEAnalysis`)
-        // .then(response => {
-        //     response.json().then(data => ({
-        //         data: data,
-        //         status: response.status
-        //     }))
-        // .then(res => {
-        //     console.log('res.data => ', res.data)
-        //     this.setState({
-        //         cmeData: res
-        //     })
-        // })
-        // .catch(error => {  
-        // console.log('Request failed', error)  
-        // });
-        // })
-    }
-
-
-    checkProps = () => {
-        console.log('clicked!!!')
-        console.log('the props in cme => ', this.props)
     }
 
     render() {

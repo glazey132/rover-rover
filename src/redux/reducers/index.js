@@ -61,31 +61,26 @@ const roverSelections = (state = {
 }, action) => {
     switch(action.type) {
         case types.SET_CURIOSITY_CAMERA_TYPE:
-        console.log('actiion in selected camera reducer = > ', action)
         return {
             ...state,
             camera: action.payload.camera
         }
         case types.RECEIVE_CURIOSITY_CAMERA_PHOTOS:
-        console.log('in reducer for cam photos => ', action)
         return {
             ...state,
             curiosityCameraPhotos: action.data.latest_photos,
         }
         case types.SET_OPPORTUNITY_CAMERA_TYPE:
-        console.log('actiion in selected opportunity camera reducer = > ', action)
         return {
             ...state,
             camera: action.payload.camera
         }
         case types.SET_SPIRIT_CAMERA_TYPE:
-        console.log('actiion in selected spirit camera reducer = > ', action)
         return {
             ...state,
             camera: action.payload.camera
         }
         case types.SET_ROVER:
-        console.log('actiion in selected rover reducer = > ', action)
         return {
             ...state,
             roverFullName: action.rover

@@ -8,7 +8,6 @@ function* getCameraPhotos(action) {
     const cameraUrl = cameraUrlMap.curiosity[`${action.payload.camera}`]
     try {
         const data = yield call(fetchCuriosityCameraPhotos, cameraUrl)
-        console.log('the data in curiosity camera photo saga => ', data);
         yield put(receiveCuriosityCameraPhotos(data));
     } catch(error) {
         console.log('there was an error while getting camera data in curiosity saga => ', error);

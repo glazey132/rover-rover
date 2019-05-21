@@ -4,10 +4,8 @@ import { receiveLatestOpportunityPhotos } from '../actions/fetch-latest-opportun
 import * as types from "../actions/actionTypes";
 
 function* fetchLatestOpportunityPhotos(action) {
-    console.log('in fetch latest opp photos')
     try {
         const data = yield call(fetchRecentOpportunityPhotos)
-        console.log('the data in opp photo saga => ', data)
         yield put(receiveLatestOpportunityPhotos(data))
     } catch(error) {
         console.log('error in latest opp photo saga => ', error);
