@@ -4,7 +4,7 @@ const HeaderText = props => {
   return (
     <div>
       <span style={textSectionStyle}>
-        <p style={textStyle}>{props.text}</p>
+        <p style={textStyle}>no</p>
       </span>
     </div>
   )
@@ -14,7 +14,6 @@ const textSectionStyle = {
   borderRadius: '10px',
   color: 'black',
   display: 'flex',
-  border: '1.5px solid black',
   marginTop: '5px',
   marginBottom: '15px'
 }

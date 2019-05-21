@@ -15,7 +15,6 @@ const textSectionStyle = {
   color: 'black',
   backgroundColor: 'white',
   display: 'flex',
-  border: '1.5px solid black',
   marginTop: '5px',
   marginBottom: '15px'
 }
