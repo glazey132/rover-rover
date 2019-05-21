@@ -7,20 +7,30 @@ import { connect } from 'react-redux';
 //bootstrap components
 import Button from 'react-bootstrap/Button';
 
-import { setCameraType } from '../redux/actions/set-camera-type';
+import { setCuriosityCameraType } from '../redux/actions/set-curiosity-camera-type';
+import { setOpportunityCameraType } from '../redux/actions/set-opportunity-camera-type';
+import { setSpiritCameraType } from '../redux/actions/set-spirit-camera-type';
 
 class CameraButton extends Component {
   constructor(props) {
     super(props);
   }
 
-  handleClick = (camera) => {
-    this.props.setCameraType(camera)
+  handleClick = (camera, roverFullName) => {
+    console.log('in handleclick of button => ', roverFullName)
+
+    if (roverFullName === 'curiosity') { 
+      console.log('yea in curiosity')
+      this.props.setCuriosityCameraType(camera);
+    } else if (roverFullName === 'opportunity') {
+      this.props.setOpportunityCameraType(camera);
+    } else if (roverFullName === 'spirit') {
+      this.props.setSpiritCameraType(camera);
+    }
   }
   render() {
-    console.log('camera button rendered =')
     return (
-      <Button value={this.props.cameraName} style={ButtonStyle} size="sm" onClick={() => this.handleClick(this.props.cameraName)}>{this.props.cameraName}</Button>
+      <Button value={this.props.cameraName} style={ButtonStyle} size="sm" onClick={() => this.handleClick(this.props.cameraName, this.props.roverFullName)}>{this.props.cameraName}</Button>
     )
   }
 };
@@ -30,9 +40,13 @@ const ButtonStyle = {
   flex: '1'
 }
 
+const mapStateToProps = state => ({ roverFullName: state.roverSelections.roverFullName })
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-    setCameraType
+    setCuriosityCameraType,
+    setOpportunityCameraType,
+    setSpiritCameraType
   }, dispatch)
 
-export default connect(null, mapDispatchToProps)(CameraButton);
+export default connect(mapStateToProps, mapDispatchToProps)(CameraButton);

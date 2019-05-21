@@ -1,5 +1,6 @@
 import * as types from "../actions/actionTypes";
 import { combineReducers } from 'redux';
+import cameraUrlMap from '../../assets/camera-url-values';
 
 const cmeData = (state = { 
     isFetching: false,
@@ -59,17 +60,35 @@ const roverSelections = (state = {
     rover: null
 }, action) => {
     switch(action.type) {
-        case types.SET_CAMERA_TYPE:
-        console.log('actiion in selected rover dcam reducer = > ', action)
+        case types.SET_CURIOSITY_CAMERA_TYPE:
+        console.log('actiion in selected camera reducer = > ', action)
+        return {
+            ...state,
+            camera: action.payload.camera
+        }
+        case types.RECEIVE_CURIOSITY_CAMERA_PHOTOS:
+        console.log('in reducer for cam photos => ', action)
+        return {
+            ...state,
+            curiosityCameraPhotos: action.data.latest_photos,
+        }
+        case types.SET_OPPORTUNITY_CAMERA_TYPE:
+        console.log('actiion in selected opportunity camera reducer = > ', action)
+        return {
+            ...state,
+            camera: action.payload.camera
+        }
+        case types.SET_SPIRIT_CAMERA_TYPE:
+        console.log('actiion in selected spirit camera reducer = > ', action)
         return {
             ...state,
             camera: action.payload.camera
         }
         case types.SET_ROVER:
-        console.log('action in rover selecttions. set rover => ', action);
+        console.log('actiion in selected rover reducer = > ', action)
         return {
             ...state,
-            rover: action.rover
+            roverFullName: action.rover
         }
         default:
             return state
