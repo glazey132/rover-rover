@@ -49,9 +49,11 @@ class OpportunityContainer extends Component {
               <Row>
                 <Col>
                   <CameraPicker rover={"opportunity"} />
-                  {this.props.latestOpportunityPhotos ? <ControlledCarousel rover={"opportunity"} photos={this.props.latestOpportunityPhotos}/>
-                  :
-                  <span><h4>loading...</h4></span>}
+                  {this.props.opportunityCameraPhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.opportunityCameraPhotos}/>
+                    :
+                    this.props.latestOpportunityPhotos ? <ControlledCarousel rover={"opportunity"} photos={this.props.latestOpportunityPhotos}/>
+                    :
+                   <span><h4>loading...</h4></span>}
                   
                 </Col>
               </Row>
@@ -91,7 +93,9 @@ const rowStyle = {
   display: 'inline-flex'
 }
 
-const mapStateToProps = state => ({ latestOpportunityPhotos: state.latestPhotos.latestOpportunityPhotos })
+const mapStateToProps = state => ({ 
+  latestOpportunityPhotos: state.latestPhotos.latestOpportunityPhotos,
+  opportunityCameraPhotos: state.roverSelections.opportunityCameraPhotos })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ 
