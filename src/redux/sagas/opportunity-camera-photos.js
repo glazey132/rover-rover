@@ -10,7 +10,7 @@ function* getCameraPhotos(action) {
         const data = yield call(fetchOpportunityCameraPhotos, cameraUrl)
         yield put(receiveOpportunityCameraPhotos(data));
     } catch(error) {
-        console.log('there was an error while getting camera data in curiosity saga => ', error);
+        console.log('there was an error while getting camera data in opportunity saga => ', error);
     }
 }
 
