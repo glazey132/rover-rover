@@ -7,7 +7,7 @@ import HeaderText from '../components/HeaderText'
 import CameraPicker from '../components/CameraPicker'
 import ControlledCarousel from '../components/ControlledCarousel'
 import Navigation from '../components/Navigation'
-import DatePicker from '../components/DatePicker';
+import DatePickerComponent from '../components/DatePickerComponent';
 
 //bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -43,7 +43,7 @@ class OpportunityContainer extends Component {
               <Row style={rowStyle}>
                 <Col>
                   <h5>Choose a camera and date for: <Badge variant="secondary">Opportunity</Badge></h5>
-                  <DatePicker />
+                  <DatePickerComponent />
                 </Col>
               </Row>
               <Row>

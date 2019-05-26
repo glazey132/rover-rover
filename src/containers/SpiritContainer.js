@@ -6,7 +6,7 @@ import '../App.css';
 import CameraPicker from '../components/CameraPicker';
 import ControlledCarousel from '../components/ControlledCarousel';
 import Navigation from '../components/Navigation';
-import DatePicker from '../components/DatePicker';
+import DatePickerComponent from '../components/DatePickerComponent';
 
 //bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -46,7 +46,7 @@ class SpiritContainer extends Component {
             <Row>
               <Col>
                 <h1>Choose a camera for: <Badge variant="secondary">Spirit</Badge></h1>
-                <DatePicker />
+                <DatePickerComponent />
               </Col>
             </Row>
             <Row>
