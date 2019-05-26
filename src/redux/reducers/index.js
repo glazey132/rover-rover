@@ -90,10 +90,25 @@ const roverSelections = (state = {
     }
 }
 
+const dateTypeSelection = (state = {
+    dateType: 'earth'
+}, action) => {
+    switch(action.type) {
+        case types.SET_DATETYPE:
+        return {
+            ...state,
+            dateType: action.payload.dateType
+        }
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     cmeData,
     latestPhotos,
-    roverSelections
+    roverSelections,
+    dateTypeSelection
 })
 
 export default rootReducer;

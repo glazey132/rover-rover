@@ -6,6 +6,7 @@ import '../App.css';
 import CameraPicker from '../components/CameraPicker';
 import ControlledCarousel from '../components/ControlledCarousel';
 import Navigation from '../components/Navigation';
+import DateToggleButton from '../components/DateToggleButton';
 import DatePickerComponent from '../components/DatePickerComponent';
 
 //bootstrap components
@@ -46,6 +47,7 @@ class SpiritContainer extends Component {
             <Row>
               <Col>
                 <h1>Choose a camera for: <Badge variant="secondary">Spirit</Badge></h1>
+                <DateToggleButton />
                 <DatePickerComponent />
               </Col>
             </Row>

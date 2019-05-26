@@ -4,7 +4,6 @@ import React , { Component } from 'react';
 //bootstrap
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 
 import DatePicker from "react-datepicker";
 
@@ -16,22 +15,27 @@ class DatePickerComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          startDate: new Date()
+          startDate: new Date(),
+          dateType: 'earth'
         };
         this.handleChange = this.handleChange.bind(this);
-      }
+    }
     
       handleChange(date) {
         this.setState({
           startDate: date
         });
       }
+
+      handleToggle(dateType, event) {
+        this.setState({
+            dateType
+        })
+      }
+      
     render() {
         return (
-            <DatePicker
-             selected={this.state.startDate}
-             onChange={this.handleChange}
-            />
+            <p>test</p>
         )
     }
 }

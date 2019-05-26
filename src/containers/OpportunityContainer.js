@@ -7,6 +7,7 @@ import HeaderText from '../components/HeaderText'
 import CameraPicker from '../components/CameraPicker'
 import ControlledCarousel from '../components/ControlledCarousel'
 import Navigation from '../components/Navigation'
+import DateToggleButton from '../components/DateToggleButton';
 import DatePickerComponent from '../components/DatePickerComponent';
 
 //bootstrap components
@@ -43,6 +44,7 @@ class OpportunityContainer extends Component {
               <Row style={rowStyle}>
                 <Col>
                   <h5>Choose a camera and date for: <Badge variant="secondary">Opportunity</Badge></h5>
+                  <DateToggleButton />
                   <DatePickerComponent />
                 </Col>
               </Row>
