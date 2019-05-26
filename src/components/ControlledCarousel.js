@@ -17,7 +17,7 @@ class ControlledCarousel extends Component {
 
   render() {
     return (
-      this.props.photos ? 
+      this.props.photos.length > 0 ? 
       <Carousel style={unsetPositionStyle}>
         {this.props.photos.map(image =>
           <Carousel.Item key={image.id} style={unsetPositionStyle}>
@@ -31,9 +31,7 @@ class ControlledCarousel extends Component {
         )}
       </Carousel>
       :
-      <Carousel style={unsetPositionStyle}>
-
-      </Carousel>
+      <h4>No recent photos from those filter options. Try a different combination of filters</h4>
     )
     
   }
