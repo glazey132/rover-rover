@@ -1,6 +1,7 @@
 import * as types from "../actions/actionTypes";
 import { combineReducers } from 'redux';
 import cameraUrlMap from '../../assets/camera-url-values';
+import moment from 'moment';
 
 const cmeData = (state = { 
     isFetching: false,
@@ -90,14 +91,19 @@ const roverSelections = (state = {
     }
 }
 
-const dateTypeSelection = (state = {
+const dates = (state = {
     dateType: 'earth'
 }, action) => {
     switch(action.type) {
         case types.SET_DATETYPE:
         return {
             ...state,
-            dateType: action.payload.dateType
+            dateType: action.payload
+        }
+        case types.SET_SEARCH_DATE:
+        return {
+            ...state,
+            date: moment(action.payload).format("YYYY-MM-DD")
         }
         default:
             return state
@@ -108,7 +114,7 @@ const rootReducer = combineReducers({
     cmeData,
     latestPhotos,
     roverSelections,
-    dateTypeSelection
+    dates
 })
 
 export default rootReducer;

@@ -25,7 +25,7 @@ class DataToggleButton extends Component {
     }   
 }
 
-const mapStateToProps = state => ({ dateType: state.dateTypeSelection.dateType })
+const mapStateToProps = state => ({ dateType: state.dates.dateType })
 
 const mapDispatchToProps = dispatch => 
     bindActionCreators({
