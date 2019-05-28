@@ -6,3 +6,11 @@ export const setSearchDate = (date) => {
         payload: date
     }
 }
+
+export const receiveDatePhotos = data => {
+    return {
+        type: types.RECEIVE_DATE_PHOTOS,
+        data,
+        receivedAt: new Date().setMilliseconds(0)
+    }
+}

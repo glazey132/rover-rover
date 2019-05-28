@@ -19,7 +19,7 @@ class DatePickerComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          startDate: new Date(),
+          date: new Date(),
           dateType: 'earth'
         };
         this.handleChange = this.handleChange.bind(this);
@@ -27,6 +27,9 @@ class DatePickerComponent extends Component {
     
       handleChange(date) {
         console.log('the date from date pick => ', date)
+        this.setState({
+            date: date
+        })
         this.props.setSearchDate(date)
       }
 
@@ -42,7 +45,8 @@ class DatePickerComponent extends Component {
             dateType === 'earth' ?
                  <DatePicker
                     dateFormat="yyyy/MM/dd"
-                    selected={this.state.startDate}
+                    showYearDropdown
+                    selected={this.state.date}
                     onChange={this.handleChange}
                 />
             :

@@ -5,7 +5,8 @@ const CAMERA_TYPES = [
     'Rear Hazard Avoidance Camera',
     'Navigation Camera',
     'Panoramic Camera',
-    'Miniature Thermal Emission Spectrometer (Mini-TES)'
+    'Miniature Thermal Emission Spectrometer (Mini-TES)',
+    'All'
   ],
   [
     'Front Hazard Avoidance Camera',
@@ -13,14 +14,17 @@ const CAMERA_TYPES = [
     'Mast Camera',
     'Chemistry and Camera Complex',
     'Mars Hands Lens Imager',
-    'Navigation Camera'
+    'Mars Descent Imager',
+    'Navigation Camera',
+    'All'
   ],
   [
     'Front Hazard Avoidance Camera',
     'Rear Hazard Avoidance Camera',
     'Navigation Camera',
     'Panoramic Camera',
-    'Miniature Thermal Emission Spectrometer (Mini-TES)'
+    'Miniature Thermal Emission Spectrometer (Mini-TES)',
+    'All'
   ]
 ]
 

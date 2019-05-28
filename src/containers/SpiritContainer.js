@@ -54,7 +54,11 @@ class SpiritContainer extends Component {
             <Row>
               <Col>
                 <CameraPicker rover={"spirit"} />
-                {this.props.latestSpiritPhotos ?  <ControlledCarousel rover={"spirit"} photos={this.props.latestSpiritPhotos}/>
+                {this.props.datePhotos ? <ControlledCarousel rover={"spirit"} photos={this.props.datePhotos}/>
+                  :
+                  this.props.spiritCameraPhotos ? <ControlledCarousel rover={"spirit"} photos={this.props.spiritCameraPhotos}/>
+                  :
+                  this.props.latestSpiritPhotos ?  <ControlledCarousel rover={"spirit"} photos={this.props.latestSpiritPhotos}/>
                 :
                   <span><h4>loading...</h4></span>}
               </Col>
@@ -90,7 +94,10 @@ const TextSectionStyle = {
   marginTop: ''
 }
 
-const mapStateToProps = state => ({ latestSpiritPhotos: state.latestPhotos.latestSpiritPhotos })
+const mapStateToProps = state => ({ 
+  latestSpiritPhotos: state.latestPhotos.latestSpiritPhotos,
+  datePhotos: state.dates.datePhotos
+})
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({

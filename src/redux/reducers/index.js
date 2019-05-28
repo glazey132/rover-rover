@@ -57,7 +57,7 @@ const latestPhotos = (state = {
 }
 
 const roverSelections = (state = {
-    camera: null,
+    camera: "Front Hazard Avoidance Camera",
     rover: null
 }, action) => {
     switch(action.type) {
@@ -104,6 +104,11 @@ const dates = (state = {
         return {
             ...state,
             date: moment(action.payload).format("YYYY-MM-DD")
+        }
+        case types.RECEIVE_DATE_PHOTOS:
+        return {
+            ...state,
+            datePhotos: action.data.photos
         }
         default:
             return state

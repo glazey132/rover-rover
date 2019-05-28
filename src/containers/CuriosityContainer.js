@@ -52,7 +52,8 @@ class CuriosityContainer extends Component {
             <Row>
               <Col>
                 <CameraPicker rover={"curiosity"} />
-                 {this.props.curiosityCameraPhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.curiosityCameraPhotos}/>
+                 {this.props.datePhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.datePhotos}/>
+                  : this.props.curiosityCameraPhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.curiosityCameraPhotos}/>
                  : this.props.latestCuriosityPhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.latestCuriosityPhotos}/>
                   :
                   <span><h4>loading...</h4></span>}
@@ -93,7 +94,8 @@ const TextSectionStyle = {
 
 const mapStateToProps = state => ({ 
   latestCuriosityPhotos: state.latestPhotos.latestCuriosityPhotos,
-  curiosityCameraPhotos: state.roverSelections.curiosityCameraPhotos
+  curiosityCameraPhotos: state.roverSelections.curiosityCameraPhotos,
+  datePhotos: state.dates.datePhotos
 })
 
 const mapDispatchToProps = dispatch =>

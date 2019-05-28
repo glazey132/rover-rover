@@ -7,6 +7,7 @@ import * as latestSpiritPhotoSaga from './latest-spirit-photo-saga';
 import * as curiosityCameraPhotoSaga from './curiosity-camera-photos';
 import * as opportunityCameraPhotoSaga from './opportunity-camera-photos';
 import * as spiritCameraPhotoSaga from './spirit-camera-photos';
+import * as datePhotoSaga from './date-photo-saga';
 
 
 export default function* rootSager() {
@@ -17,6 +18,7 @@ export default function* rootSager() {
         ...Object.values(latestSpiritPhotoSaga),
         ...Object.values(curiosityCameraPhotoSaga),
         ...Object.values(opportunityCameraPhotoSaga),
-        ...Object.values(spiritCameraPhotoSaga)
+        ...Object.values(spiritCameraPhotoSaga),
+        ...Object.values(datePhotoSaga)
     ].map(fork))
 }

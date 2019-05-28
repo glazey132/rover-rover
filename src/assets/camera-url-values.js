@@ -4,7 +4,8 @@ const CAMERA_URL_MAP = {
     'Rear Hazard Avoidance Camera': 'RHAZ',
     'Navigation Camera': 'NAVCAM',
     'Panoramic Camera': 'PANCAM',
-    'Miniature Thermal Emission Spectrometer (Mini-TES)': 'MINITES'
+    'Miniature Thermal Emission Spectrometer (Mini-TES)': 'MINITES',
+    'All': 'ALL'
   },
   curiosity: {
     'Front Hazard Avoidance Camera': 'FHAZ',
@@ -12,14 +13,17 @@ const CAMERA_URL_MAP = {
     'Mast Camera': 'MAST',
     'Chemistry and Camera Complex': 'CHEMCAM',
     'Mars Hands Lens Imager': 'MAHLI',
-    'Navigation Camera': 'NAVCAM'
+    'Mars Descent Imager': 'MARDI',
+    'Navigation Camera': 'NAVCAM',
+    'All': 'ALL'
   },
   spirit: {
     'Front Hazard Avoidance Camera': 'FHAZ',
     'Rear Hazard Avoidance Camera': 'RHAZ',
     'Navigation Camera': 'NAVCAM',
     'Panoramic Camera': 'PANCAM',
-    'Miniature Thermal Emission Spectrometer (Mini-TES)': 'MINITES'
+    'Miniature Thermal Emission Spectrometer (Mini-TES)': 'MINITES',
+    'All': 'ALL'
   }
 }
 
