@@ -13,6 +13,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import sizeMe from 'react-sizeme';
+
 
 
 
@@ -81,10 +83,10 @@ class App extends Component {
                 <NotificationSection notification={this.state.notification} />
               </Col>
               <Col xs={12} sm={12} lg={6} style={geoColumnStyle}>
-                <GeoSection></GeoSection>
+                <GeoSection screenSize={this.props.size}></GeoSection>
               </Col>
             </Row>
-            <Row style={bottomRowStyle} noGutters={true}><Col xs={12} style={bottomColumnStyle}><CMESection /></Col></Row>
+            <Row style={this.props.size.width >= 992 ? desktopBottomRowStyle : mobileBottomRowStyle}><Col xs={12} style={bottomColumnStyle}><CMESection /></Col></Row>
           </Container>
         }
       </div>
@@ -97,7 +99,7 @@ const notificationColumnStyle = {
   maxHeight: '50vh',
   overflow: 'scroll',
   borderRadius: '10px',
-  margin: '5px',
+  margin: '5px 5px 0px 5px',
   flex: '1',
   background: '#e9ecef',
   padding: '2em',
@@ -107,7 +109,7 @@ const notificationColumnStyle = {
 const geoColumnStyle = {
   height: '50vh',
   maxHeight: '50vh',
-  margin: '5px',
+  margin: '3px 5px 0px 5px',
   borderRadius: '10px',
   color: 'black',
   border: '1.5px solid black',
@@ -117,10 +119,17 @@ const geoColumnStyle = {
   textAlign: 'center'
 }
 
-const bottomRowStyle = {
+const desktopBottomRowStyle = {
   height: '50vh',
   maxHeight: '50vh',
-  margin: '10px -10px',
+  margin: '1px -9px 20px -9px',
+  marginBottom: '20px'
+}
+
+const mobileBottomRowStyle = {
+  height: '50vh',
+  maxHeight: '50vh',
+  margin: '1px 0px 20px -9px',
   marginBottom: '20px'
 }
 
@@ -133,4 +142,5 @@ const bottomColumnStyle = {
   borderRadius: '10px'
 }
 
-export default App;
+const SizedApp = sizeMe({ monitorHeight: true })(App);
+export default SizedApp;
