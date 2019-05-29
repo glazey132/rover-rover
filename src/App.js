@@ -86,7 +86,7 @@ class App extends Component {
                 <GeoSection screenSize={this.props.size}></GeoSection>
               </Col>
             </Row>
-            <Row style={this.props.size.width >= 992 ? desktopBottomRowStyle : mobileBottomRowStyle}><Col xs={12} style={bottomColumnStyle}><CMESection /></Col></Row>
+            <Row style={this.props.size.width >= 992 ? desktopBottomRowStyle : mobileBottomRowStyle} noGutters={true}><Col xs={12} style={bottomColumnStyle}><CMESection /></Col></Row>
           </Container>
         }
       </div>

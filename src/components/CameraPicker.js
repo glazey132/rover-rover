@@ -46,7 +46,8 @@ const ToolbarStyle = {
 }
 
 const ButtonGroupStyle = {
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  zIndex: 2
 }
 
 export default CameraPicker;
