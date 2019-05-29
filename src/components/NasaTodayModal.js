@@ -2,7 +2,7 @@
 import React from 'react';
 
 // app components
-import ModalText from './HeaderText';
+import ModalText from './ModalText';
 import NasaTodayMedia from './NasaTodayMedia';
 
 //bootstrap components
