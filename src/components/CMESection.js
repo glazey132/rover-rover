@@ -9,8 +9,6 @@ import SimpleBarGraph from './charts/SimpleBarGraph';
 
 import {ResponsiveContainer} from 'recharts';
 
-import Button from 'react-bootstrap/Button';
-
 import { requestCmeData } from '../redux/actions/fetch-cme-data';
 
 class CMESection extends React.Component {

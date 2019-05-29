@@ -16,7 +16,6 @@ class DataToggleButton extends Component {
     }
 
     render() {
-        console.log('this.props. in container => ', this.props)
         return (
             <ToggleButtonGroup style={this.props.screenSize.width < 425 ? mobileSizedButtonRowStyle : biggerSizedButtonRowStyle} name="dateType" toggle={true} aria-label="Date-type Toggle" onChange={this.props.setDateType}>
                 <ToggleButton value={'earth_date'} variant="primary">Earth Date</ToggleButton>

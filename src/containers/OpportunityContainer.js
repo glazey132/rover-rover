@@ -1,9 +1,7 @@
 //packages
 import React, { Component } from 'react';
-import axios from 'axios';
 import '../App.css';
 
-import HeaderText from '../components/HeaderText'
 import CameraPicker from '../components/CameraPicker'
 import ControlledCarousel from '../components/ControlledCarousel'
 import Navigation from '../components/Navigation'
@@ -14,7 +12,6 @@ import DatePickerComponent from '../components/DatePickerComponent';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Badge from 'react-bootstrap/Badge';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -78,24 +75,6 @@ const OpportunityContainerPageStyle = {
     fontSize: 'calc(10px + 2vmin)',
     color: 'white',
     border: '1px solid teal'
-}
-
-
-const PictureSectionStyle = {
-  border: '1px solid red',
-  width: '50%',
-  height: '50%'
-}
-
-const TextSectionStyle = {
-  border: '1px solid blue',
-  width: '50%',
-  height: '20%',
-  marginTop: ''
-}
-
-const rowStyle = {
-  display: 'inline-flex'
 }
 
 const dateRowStyle = {

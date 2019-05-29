@@ -1,6 +1,5 @@
 //packages
 import React, { Component } from 'react';
-import axios from 'axios';
 import '../App.css';
 
 import CameraPicker from '../components/CameraPicker';
@@ -13,7 +12,6 @@ import DatePickerComponent from '../components/DatePickerComponent';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Badge from 'react-bootstrap/Badge';
 
 //redux
 import { bindActionCreators } from 'redux';
@@ -83,20 +81,6 @@ const SpiritContainerPageStyle = {
 
 const dateRowStyle = {
   margin: '1rem 0'
-}
-
-
-const PictureSectionStyle = {
-  border: '1px solid red',
-  width: '50%',
-  height: '50%'
-}
-
-const TextSectionStyle = {
-  border: '1px solid blue',
-  width: '50%',
-  height: '20%',
-  marginTop: ''
 }
 
 const mapStateToProps = state => ({ 
