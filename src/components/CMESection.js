@@ -9,6 +9,9 @@ import SimpleBarGraph from './charts/SimpleBarGraph';
 
 import {ResponsiveContainer} from 'recharts';
 
+//bootstrap components
+import Spinner from 'react-bootstrap/Spinner';
+
 import { requestCmeData } from '../redux/actions/fetch-cme-data';
 
 class CMESection extends React.Component {
@@ -27,14 +30,23 @@ class CMESection extends React.Component {
 
     render() {
         const { cmeData } = this.state;
-        const { size } = this.props;
+        const { size, isCMEFetching } = this.props;
         return (
+            isCMEFetching ?  <div style={loadingStyle}><Spinner animation="border" variant="primary" /></div>
+            :
             <div style={graphContainerStyle}>
                 <h6 style={titleStyle}>Most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</h6>
                 <SimpleBarGraph data={this.props.data} size={size} />
             </div>
         )
     }
+}
+
+const loadingStyle = {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    display: 'flex'
 }
 
 const titleStyle = {
@@ -61,7 +73,10 @@ const cmeItemStyle = {
     listStyle: 'none'
 }
 
-const mapStateToProps = state => ({ data: state.cmeData })
+const mapStateToProps = state => ({ 
+    data: state.cmeData,
+    isCMEFetching: state.cmeData.isCMEFetching
+})
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({ requestCmeData }, dispatch)

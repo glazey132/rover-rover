@@ -4,7 +4,7 @@ import cameraUrlMap from '../../assets/camera-url-values';
 import moment from 'moment';
 
 const cmeData = (state = { 
-    isFetching: false,
+    isCMEFetching: true,
     timeReceived: null,
     error: false,
     cmeData: []
@@ -13,7 +13,7 @@ const cmeData = (state = {
         case types.RECEIVE_CME_DATA:
         return {
             ...state,
-            isFetching: false,
+            isCMEFetching: false,
             cmeData: action.data,
             timeReceived: action.receivedAt
         }
