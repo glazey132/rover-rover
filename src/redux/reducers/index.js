@@ -23,7 +23,7 @@ const cmeData = (state = {
 }
 
 const latestPhotos = (state = {
-    isFetching: false,
+    isPhotoFetching: true,
     timeReceived: null,
     error: false,
     latestOpportunityPhotos: [],
@@ -33,21 +33,21 @@ const latestPhotos = (state = {
         case types.RECEIVE_LATEST_OPPORTUNITY_PHOTOS:
         return {
             ...state,
-            isFetching: false,
+            isPhotoFetching: false,
             latestOpportunityPhotos: action.data.latest_photos,
             timeReceived: action.receivedAt
         }
         case types.RECEIVE_LATEST_CURIOSITY_PHOTOS:
         return {
             ...state,
-            isFetching: false,
+            isPhotoFetching: false,
             latestCuriosityPhotos: action.data.latest_photos,
             timeReceived: action.receivedAt
         }
         case types.RECEIVE_LATEST_SPIRIT_PHOTOS:
         return {
             ...state,
-            isFetching: false,
+            isPhotoFetching: false,
             latestSpiritPhotos: action.data.latest_photos,
             timeReceived: action.receivedAt
         }
@@ -92,7 +92,8 @@ const roverSelections = (state = {
 }
 
 const dates = (state = {
-    dateType: 'earth_date'
+    dateType: 'earth_date',
+    isCameraPhotosFetching: false
 }, action) => {
     switch(action.type) {
         case types.SET_DATETYPE:
@@ -103,12 +104,14 @@ const dates = (state = {
         case types.SET_SEARCH_DATE:
         return {
             ...state,
-            date: moment(action.payload).format("YYYY-MM-DD")
+            date: moment(action.payload).format("YYYY-MM-DD"),
+            isCameraPhotosFetching: true
         }
         case types.RECEIVE_DATE_PHOTOS:
         return {
             ...state,
-            datePhotos: action.data.photos
+            datePhotos: action.data.photos,
+            isCameraPhotosFetching: false
         }
         default:
             return state

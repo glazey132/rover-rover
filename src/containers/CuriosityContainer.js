@@ -13,6 +13,7 @@ import DatePickerComponent from '../components/DatePickerComponent';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
 
 //redux
 import { bindActionCreators } from 'redux';
@@ -36,6 +37,7 @@ class CuriosityContainer extends Component {
   }
 
   render() {
+    const { isPhotoFetching, isCameraPhotosFetching } = this.props;
     return (
       <div style={CuriosityContainerPageStyle} className="overlay">
         <Container fluid={true}>
@@ -52,7 +54,8 @@ class CuriosityContainer extends Component {
             <Row>
               <Col>
                 <CameraPicker rover={"curiosity"} />
-                 {this.props.datePhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.datePhotos}/>
+                 {isPhotoFetching || isCameraPhotosFetching ? <div style={loadingStyle}><Spinner animation="border" variant="primary" /></div>
+                  : this.props.datePhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.datePhotos}/>
                   : this.props.curiosityCameraPhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.curiosityCameraPhotos}/>
                  : this.props.latestCuriosityPhotos ? <ControlledCarousel rover={"curiosity"} photos={this.props.latestCuriosityPhotos}/>
                   :
@@ -78,6 +81,13 @@ const CuriosityContainerPageStyle = {
     border: '1px solid teal'
 }
 
+const loadingStyle = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  display: 'flex'
+}
+
 const dateRowStyle = {
   margin: '1rem 0'
 }
@@ -85,7 +95,9 @@ const dateRowStyle = {
 const mapStateToProps = state => ({ 
   latestCuriosityPhotos: state.latestPhotos.latestCuriosityPhotos,
   curiosityCameraPhotos: state.roverSelections.curiosityCameraPhotos,
-  datePhotos: state.dates.datePhotos
+  datePhotos: state.dates.datePhotos,
+  isPhotoFetching: state.latestPhotos.isPhotoFetching,
+  isCameraPhotosFetching: state.dates.isCameraPhotosFetching
 })
 
 const mapDispatchToProps = dispatch =>

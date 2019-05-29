@@ -12,6 +12,7 @@ import DatePickerComponent from '../components/DatePickerComponent';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
 
 //redux
 import { bindActionCreators } from 'redux';
@@ -53,7 +54,9 @@ class SpiritContainer extends Component {
             <Row>
               <Col>
                 <CameraPicker rover={"spirit"} />
-                {this.props.datePhotos ? <ControlledCarousel rover={"spirit"} photos={this.props.datePhotos}/>
+                {this.props.isPhotoFetching || this.props.isCameraPhotosFetching ? <div style={loadingStyle}><Spinner animation="border" variant="primary" /></div>
+                  :  
+                  this.props.datePhotos ? <ControlledCarousel rover={"spirit"} photos={this.props.datePhotos}/>
                   :
                   this.props.spiritCameraPhotos ? <ControlledCarousel rover={"spirit"} photos={this.props.spiritCameraPhotos}/>
                   :
@@ -83,9 +86,18 @@ const dateRowStyle = {
   margin: '1rem 0'
 }
 
+const loadingStyle = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  display: 'flex'
+}
+
 const mapStateToProps = state => ({ 
   latestSpiritPhotos: state.latestPhotos.latestSpiritPhotos,
-  datePhotos: state.dates.datePhotos
+  datePhotos: state.dates.datePhotos,
+  isPhotoFetching: state.latestPhotos.isPhotoFetching,
+  isCameraPhotosFetching: state.dates.isCameraPhotosFetching
 })
 
 const mapDispatchToProps = dispatch =>

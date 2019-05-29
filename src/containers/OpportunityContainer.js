@@ -12,6 +12,7 @@ import DatePickerComponent from '../components/DatePickerComponent';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -49,7 +50,9 @@ class OpportunityContainer extends Component {
               <Row>
                 <Col>
                   <CameraPicker rover={"opportunity"} />
-                  {this.props.datePhotos ? <ControlledCarousel rover={"opportunity"} photos={this.props.datePhotos}/>
+                  {this.props.isPhotoFetching || this.props.isCameraPhotosFetching ? <div style={loadingStyle}><Spinner animation="border" variant="primary" /></div>
+                    :
+                    this.props.datePhotos ? <ControlledCarousel rover={"opportunity"} photos={this.props.datePhotos}/>
                     :
                     this.props.opportunityCameraPhotos ? <ControlledCarousel rover={"opportunity"} photos={this.props.opportunityCameraPhotos}/>
                     :
@@ -81,10 +84,19 @@ const dateRowStyle = {
   margin: '1rem 0'
 }
 
+const loadingStyle = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  display: 'flex'
+}
+
 const mapStateToProps = state => ({ 
   latestOpportunityPhotos: state.latestPhotos.latestOpportunityPhotos,
   opportunityCameraPhotos: state.roverSelections.opportunityCameraPhotos,
-  datePhotos: state.dates.datePhotos
+  datePhotos: state.dates.datePhotos,
+  isPhotoFetching: state.latestPhotos.isPhotoFetching,
+  isCameraPhotosFetching: state.dates.isCameraPhotosFetching
 })
 
 const mapDispatchToProps = dispatch =>
