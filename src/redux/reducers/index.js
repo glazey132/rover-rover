@@ -57,7 +57,7 @@ const latestPhotos = (state = {
 }
 
 const roverSelections = (state = {
-    camera: "Front Hazard Avoidance Camera",
+    camera: "All",
     rover: null
 }, action) => {
     switch(action.type) {
@@ -92,7 +92,7 @@ const roverSelections = (state = {
 }
 
 const dates = (state = {
-    dateType: 'earth'
+    dateType: 'earth_date'
 }, action) => {
     switch(action.type) {
         case types.SET_DATETYPE:

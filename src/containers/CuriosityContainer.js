@@ -9,6 +9,7 @@ import Navigation from '../components/Navigation'
 import DateToggleButton from '../components/DateToggleButton';
 import DatePickerComponent from '../components/DatePickerComponent';
 
+
 //bootstrap components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -18,6 +19,8 @@ import Badge from 'react-bootstrap/Badge';
 //redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import sizeMe from 'react-sizeme';
 
 import { requestLatestCuriosityPhotos  } from '../redux/actions/fetch-latest-curiosity-photos';
 import { setRover  } from '../redux/actions/set-rover';
@@ -35,6 +38,9 @@ class CuriosityContainer extends Component {
   }
 
   render() {
+    console.log(
+      'this.props in curry cont => ', this.props
+    )
     return (
       <div style={CuriosityContainerPageStyle} className="overlay">
         <Container fluid={true}>
@@ -42,11 +48,10 @@ class CuriosityContainer extends Component {
             <Navigation />
           </Row>
           <React.Fragment>
-            <Row>
+            <Row style={dateRowStyle}>
               <Col>
-                <h1>Choose a camera for: <Badge variant="secondary">Curiosity</Badge></h1>
-                <DateToggleButton />
-                <DatePickerComponent />
+                <DateToggleButton screenSize={this.props.size}/>
+                <DatePickerComponent screenSize={this.props.size}/>
               </Col>
             </Row>
             <Row>
@@ -85,6 +90,10 @@ const PictureSectionStyle = {
   height: '50%'
 }
 
+const dateRowStyle = {
+  margin: '1rem 0'
+}
+
 const TextSectionStyle = {
   border: '1px solid blue',
   width: '50%',
@@ -104,4 +113,5 @@ const mapDispatchToProps = dispatch =>
     setRover
   }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(CuriosityContainer);
+const SizedCuriosityContainer = sizeMe({ monitorHeight: true })(CuriosityContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SizedCuriosityContainer);

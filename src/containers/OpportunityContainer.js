@@ -19,6 +19,8 @@ import Badge from 'react-bootstrap/Badge';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import sizeMe from 'react-sizeme';
+
 import { requestLatestOpportunityPhotos  } from '../redux/actions/fetch-latest-opportunity-photos';
 import { setRover  } from '../redux/actions/set-rover';
 
@@ -41,11 +43,10 @@ class OpportunityContainer extends Component {
             <Navigation />
           </Row>
             <React.Fragment>
-              <Row style={rowStyle}>
+              <Row style={dateRowStyle}>
                 <Col>
-                  <h5>Choose a camera and date for: <Badge variant="secondary">Opportunity</Badge></h5>
-                  <DateToggleButton />
-                  <DatePickerComponent />
+                  <DateToggleButton screenSize={this.props.size}/>
+                  <DatePickerComponent screenSize={this.props.size}/>
                 </Col>
               </Row>
               <Row>
@@ -97,6 +98,10 @@ const rowStyle = {
   display: 'inline-flex'
 }
 
+const dateRowStyle = {
+  margin: '1rem 0'
+}
+
 const mapStateToProps = state => ({ 
   latestOpportunityPhotos: state.latestPhotos.latestOpportunityPhotos,
   opportunityCameraPhotos: state.roverSelections.opportunityCameraPhotos,
@@ -109,4 +114,5 @@ const mapDispatchToProps = dispatch =>
     setRover
   }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(OpportunityContainer);
+const SizedOpportunityContainer = sizeMe({ monitorHeight: true })(OpportunityContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SizedOpportunityContainer);

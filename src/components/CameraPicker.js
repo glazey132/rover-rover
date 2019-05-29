@@ -41,7 +41,8 @@ const ToolbarStyle = {
   display: 'flex',
   textAlign: 'center',
   justifyContent: 'center',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  marginBottom: '1rem'
 }
 
 const ButtonGroupStyle = {

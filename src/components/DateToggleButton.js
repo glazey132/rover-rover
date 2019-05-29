@@ -16,14 +16,24 @@ class DataToggleButton extends Component {
     }
 
     render() {
+        console.log('this.props. in container => ', this.props)
         return (
-            <ToggleButtonGroup name="dateType" toggle={true} aria-label="Date-type Toggle" onChange={this.props.setDateType}>
-                <ToggleButton value={'earth'} variant="primary">Earth Date</ToggleButton>
-                <ToggleButton value={'sol'} variant="primary">Sol date</ToggleButton>
+            <ToggleButtonGroup style={this.props.screenSize.width < 425 ? mobileSizedButtonRowStyle : biggerSizedButtonRowStyle} name="dateType" toggle={true} aria-label="Date-type Toggle" onChange={this.props.setDateType}>
+                <ToggleButton value={'earth_date'} variant="primary">Earth Date</ToggleButton>
+                <ToggleButton value={'sol'} variant="primary">Martian Day</ToggleButton>
             </ToggleButtonGroup>
         )
     }   
 }
+
+const biggerSizedButtonRowStyle = {
+    marginRight: '1rem',
+}
+
+const mobileSizedButtonRowStyle = {
+    marginBottom: '1rem',
+}
+
 
 const mapStateToProps = state => ({ dateType: state.dates.dateType })
 

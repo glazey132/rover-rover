@@ -26,7 +26,11 @@ class CameraButton extends Component {
     }
   }
   render() {
+    const { camera } = this.props;
     return (
+      camera === this.props.cameraName ?
+      <Button active value={this.props.cameraName} style={ButtonStyle} size="sm" onClick={() => this.handleClick(this.props.cameraName, this.props.roverFullName)}>{this.props.cameraName}</Button>
+      :
       <Button value={this.props.cameraName} style={ButtonStyle} size="sm" onClick={() => this.handleClick(this.props.cameraName, this.props.roverFullName)}>{this.props.cameraName}</Button>
     )
   }
@@ -37,7 +41,10 @@ const ButtonStyle = {
   flex: '1'
 }
 
-const mapStateToProps = state => ({ roverFullName: state.roverSelections.roverFullName })
+const mapStateToProps = state => ({ 
+  camera: state.roverSelections.camera,
+  roverFullName: state.roverSelections.roverFullName 
+})
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({

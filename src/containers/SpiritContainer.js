@@ -19,6 +19,8 @@ import Badge from 'react-bootstrap/Badge';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import sizeMe from 'react-sizeme';
+
 import { requestLatestSpiritPhotos  } from '../redux/actions/fetch-latest-spirit-photos';
 import { setRover  } from '../redux/actions/set-rover';
 
@@ -44,11 +46,10 @@ class SpiritContainer extends Component {
           <React.Fragment>
 
           </React.Fragment>
-            <Row>
+            <Row style={dateRowStyle}>
               <Col>
-                <h1>Choose a camera for: <Badge variant="secondary">Spirit</Badge></h1>
-                <DateToggleButton />
-                <DatePickerComponent />
+                <DateToggleButton screenSize={this.props.size}/>
+                <DatePickerComponent screenSize={this.props.size}/>
               </Col>
             </Row>
             <Row>
@@ -80,6 +81,10 @@ const SpiritContainerPageStyle = {
     border: '1px solid teal'
 }
 
+const dateRowStyle = {
+  margin: '1rem 0'
+}
+
 
 const PictureSectionStyle = {
   border: '1px solid red',
@@ -105,4 +110,5 @@ const mapDispatchToProps = dispatch =>
     setRover
   }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpiritContainer);
+const SizedSpiritContainer = sizeMe({ monitorHeight: true })(SpiritContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SizedSpiritContainer);
