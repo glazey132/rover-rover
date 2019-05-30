@@ -104,7 +104,8 @@ const dates = (state = {
         case types.SET_SEARCH_DATE:
         return {
             ...state,
-            date: moment(action.payload).format("YYYY-MM-DD"),
+            solDate: action.payload.solDate || null,
+            date: moment(action.payload.date).format("YYYY-MM-DD") || null,
             isCameraPhotosFetching: true
         }
         case types.RECEIVE_DATE_PHOTOS:

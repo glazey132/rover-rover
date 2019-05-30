@@ -28,8 +28,10 @@ class DatePickerComponent extends Component {
     }
     
       handleSearch = () => {
-        if(this.state.date) {
-          this.props.setSearchDate(this.state.date)
+        if (this.props.dateType === 'sol' && this.state.solDate.length >= 1) {
+            this.props.setSearchDate(this.state.solDate);
+        } else if (this.props.dateType === 'earth_date') {
+            this.props.setSearchDate(this.state.date)
         }
       }
     
@@ -40,7 +42,7 @@ class DatePickerComponent extends Component {
       }
 
 
-      handelInputChange = (e) => {
+      handelSolChange = (e) => {
           this.setState({
             solDate: e.target.value
           })
@@ -52,19 +54,8 @@ class DatePickerComponent extends Component {
         })
       }
 
-      sendSolFilter = () => {
-          const solDate = this.state.solDate;
-          if (solDate && solDate >= 1) {
-            this.props.setSearchDate(solDate, 'sol');
-          } else {
-              console.log('invalid sol date');
-          }
-      }
-
-
       
     render() {
-        console.log('this.props  .in date picker -> ', this.props)
         const { dateType } = this.props;
         return (
             dateType === 'earth_date' ?
@@ -80,8 +71,8 @@ class DatePickerComponent extends Component {
                 </div>
             :
             <div style={solInputStyle}>
-                <input placeholder="Martian sol"/>
-                <Button variant="primary">Search</Button>
+                <input placeholder="Martian sol" onChange={this.handelSolChange}/>
+                <Button style={this.props.screenSize.width < 425 ? mobileSizedButtonStyle : biggerSizedButtonStyle}onClick={this.handleSearch} variant="danger">Search</Button>
             </div>
             
         )
