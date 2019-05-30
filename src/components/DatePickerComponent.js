@@ -70,6 +70,7 @@ class DatePickerComponent extends Component {
             dateType === 'earth_date' ?
                 <div style={solInputStyle}>
                     <DatePicker
+                        withPortal
                         dateFormat="yyyy/MM/dd"
                         showYearDropdown
                         selected={this.state.date}
@@ -102,6 +103,7 @@ const solInputStyle = {
     borderRadius: '.25rem',
     transition: 'border-color .15s ease-in-out,box-shadow .15s ease-in-out'
 }
+
 const mapStateToProps = state => ({ 
     dateType: state.dates.dateType,
     date: state.dates.date 
