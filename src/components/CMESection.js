@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import sizeMe from 'react-sizeme'
 
 import SimpleBarGraph from './charts/SimpleBarGraph';
+import LatLongScatterChart from './charts/LatLongScatterChart';
 
 import {ResponsiveContainer} from 'recharts';
 
@@ -59,7 +60,6 @@ class CMESection extends React.Component {
                     </Tabs>
                 </header>
                 <SimpleBarGraph data={this.props.data} size={size} />
-                <p>{cmeTab}</p>
             </div>
             : cmeTab === 'halfAngle' ?
             <div style={graphContainerStyle}>
@@ -81,7 +81,6 @@ class CMESection extends React.Component {
                     </Tabs>
                 </header>
                 <SimpleBarGraph data={this.props.data} size={size} />
-                <p>{cmeTab}</p>
             </div>
             :
             <div style={graphContainerStyle}>
@@ -102,8 +101,7 @@ class CMESection extends React.Component {
                     </Tab>
                     </Tabs>
                 </header>
-                <SimpleBarGraph data={this.props.data} size={size} />
-                <p>{cmeTab}</p>
+                <LatLongScatterChart data={this.props.data} size={size} />
             </div>
         )
     }
