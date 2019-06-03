@@ -32,10 +32,10 @@ class SimpleBarChart extends React.Component {
           margin={{top: 20, right: 60, left: 5, bottom: 5}}>
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
-            <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }}/>
+            <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }}/>
             <Tooltip payload={this.props.data.cmeData}/>
             <Legend />
-            <Bar dataKey="halfAngle" fill="#0b3d91" unit="degrees" />
+            <Bar dataKey="halfAngle" fill="#0b3d91" unit="&deg;" />
           </BarChart>
         </div>
         :
@@ -58,10 +58,10 @@ class SimpleBarChart extends React.Component {
                 margin={{top: 20, right: 60, left: 5, bottom: 5}}>
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
-            <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }} />
+            <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }} />
             <Tooltip payload={this.props.data.cmeData}/>
             <Legend />
-            <Bar dataKey="halfAngle" fill="#0b3d91" unit="degrees" />
+            <Bar dataKey="halfAngle" fill="#0b3d91" unit="&deg;" />
           </BarChart>
         </div>
         :
@@ -84,10 +84,10 @@ class SimpleBarChart extends React.Component {
                 margin={{top: 20, right: 30, left: 60, bottom: 5}}>
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
-            <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }}/>
+            <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }}/>
             <Tooltip payload={this.props.data.cmeData}/>
             <Legend />
-            <Bar dataKey="halfAngle" fill="#0b3d91" label unit="degrees" />
+            <Bar dataKey="halfAngle" fill="#0b3d91" label unit="&deg;" />
           </BarChart>
         </div>
       :
@@ -109,10 +109,10 @@ class SimpleBarChart extends React.Component {
                 margin={{top: 20, right: 30, left: 60, bottom: 5}}>
           <CartesianGrid strokeDasharray="3 3"/>
           <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5}} />
-          <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }} />
+          <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }} />
           <Tooltip payload={this.props.data.cmeData}/>
           <Legend />
-          <Bar dataKey="halfAngle" fill="#0b3d91" label unit="degrees" />
+          <Bar dataKey="halfAngle" fill="#0b3d91" label unit="&deg;" />
           </BarChart>
         </div>
       );
