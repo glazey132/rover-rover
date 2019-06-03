@@ -119,11 +119,27 @@ const dates = (state = {
     }
 }
 
+const cmeSelections = (state = {
+    cmeTab: 'speed'
+}, action) => {
+    switch(action.type) {
+        case types.SET_CME_TAB:
+            console.log("cme tab reducer => ", action)
+            return {
+                ...state,
+                cmeTab: action.cmeTab.key
+            }
+            default:
+                return state
+    }
+}
+
 const rootReducer = combineReducers({
     cmeData,
     latestPhotos,
     roverSelections,
-    dates
+    dates,
+    cmeSelections
 })
 
 export default rootReducer;

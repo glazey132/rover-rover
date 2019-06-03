@@ -16,3 +16,4 @@ export const SET_ROVER = 'SET_ROVER';
 export const SET_DATETYPE = 'SET_DATETYPE';
 export const SET_SEARCH_DATE = 'SET_SEARCH_DATE';
 export const RECEIVE_DATE_PHOTOS = 'RECEIVE_DATE_PHOTOS';
+export const SET_CME_TAB = 'SET_CME_TAB';

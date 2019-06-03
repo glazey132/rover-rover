@@ -11,8 +11,11 @@ import {ResponsiveContainer} from 'recharts';
 
 //bootstrap components
 import Spinner from 'react-bootstrap/Spinner';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 import { requestCmeData } from '../redux/actions/fetch-cme-data';
+import { setCmeTab } from '../redux/actions/set-cme-tab';
 
 class CMESection extends React.Component {
     constructor(props) {
@@ -29,17 +32,85 @@ class CMESection extends React.Component {
     }
 
     render() {
-        const { cmeData } = this.state;
+        const { cmeTab, data } = this.props;
+        console.log("TCL: CMESection -> render -> cmeTab", cmeTab)
+        console.log("cme data ? ", data)
         const { size, isCMEFetching } = this.props;
         return (
             isCMEFetching ?  <div style={loadingStyle}><Spinner animation="border" variant="primary" /></div>
             :
+            cmeTab === 'speed' ?
             <div style={graphContainerStyle}>
-                <h6 style={titleStyle}>Most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</h6>
+                <header style={cmeHeaderStyle}>
+                    <Tabs 
+                        defaultActiveKey="speed" 
+                        id="uncontrolled-tab-example"
+                        onSelect={key => this.props.setCmeTab({ key })}
+                    >
+                    <Tab eventKey="speed" title="speed">
+                        <p>Speed of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    <Tab eventKey="halfAngle" title="halfAngle">
+                        <p>Half angle of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    <Tab eventKey="latitude-longitude" title="lat/long">
+                        <p>Latitude and Longitude of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    </Tabs>
+                </header>
                 <SimpleBarGraph data={this.props.data} size={size} />
+                <p>{cmeTab}</p>
+            </div>
+            : cmeTab === 'halfAngle' ?
+            <div style={graphContainerStyle}>
+                <header style={cmeHeaderStyle}>
+                    <Tabs 
+                        defaultActiveKey="speed" 
+                        id="uncontrolled-tab-example"
+                        onSelect={key => this.props.setCmeTab({ key })}
+                    >
+                    <Tab eventKey="speed" title="speed">
+                        <p>Speed of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    <Tab eventKey="halfAngle" title="halfAngle">
+                        <p>Half angle of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    <Tab eventKey="latitude-longitude" title="lat/long">
+                        <p>Latitude and Longitude of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    </Tabs>
+                </header>
+                <SimpleBarGraph data={this.props.data} size={size} />
+                <p>{cmeTab}</p>
+            </div>
+            :
+            <div style={graphContainerStyle}>
+                <header style={cmeHeaderStyle}>
+                    <Tabs 
+                        defaultActiveKey="speed" 
+                        id="uncontrolled-tab-example"
+                        onSelect={key => this.props.setCmeTab({ key })}
+                    >
+                    <Tab eventKey="speed" title="speed">
+                        <p>Speed of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    <Tab eventKey="halfAngle" title="halfAngle">
+                        <p>Half angle of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    <Tab eventKey="latitude-longitude" title="lat/long">
+                        <p>Latitude and Longitude of most recently recorded CMEs (Coronal Mass Ejections a.k.a Solar Flares)</p>
+                    </Tab>
+                    </Tabs>
+                </header>
+                <SimpleBarGraph data={this.props.data} size={size} />
+                <p>{cmeTab}</p>
             </div>
         )
     }
+}
+
+const cmeHeaderStyle = {
+    display: 'inline-flex'
 }
 
 const loadingStyle = {
@@ -75,11 +146,15 @@ const cmeItemStyle = {
 
 const mapStateToProps = state => ({ 
     data: state.cmeData,
-    isCMEFetching: state.cmeData.isCMEFetching
+    isCMEFetching: state.cmeData.isCMEFetching,
+    cmeTab: state.cmeSelections.cmeTab
 })
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ requestCmeData }, dispatch)
+    bindActionCreators({ 
+        requestCmeData,
+        setCmeTab
+     }, dispatch)
 
 const sizedApp = sizeMe({ monitorHeight: true })(CMESection);
 export default connect(mapStateToProps, mapDispatchToProps)(sizedApp);
