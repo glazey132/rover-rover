@@ -21,6 +21,7 @@
     "redux-saga": "^1.0.2"
   },
   "devDependencies": {
+    "create-react-class": "^15.6.3",
     "redux-logger": "^3.0.6"
   },
   "scripts": {

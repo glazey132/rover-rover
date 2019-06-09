@@ -69,17 +69,27 @@ const roverSelections = (state = {
         case types.RECEIVE_CURIOSITY_CAMERA_PHOTOS:
         return {
             ...state,
-            curiosityCameraPhotos: action.data.latest_photos,
+            curiosityCameraPhotos: action.data.photos,
         }
         case types.SET_OPPORTUNITY_CAMERA_TYPE:
         return {
             ...state,
             camera: action.payload.camera
         }
+        case types.RECEIVE_OPPORTUNITY_CAMERA_PHOTOS:
+        return {
+            ...state,
+            opportunityCameraPhotos: action.data.photos,
+        }
         case types.SET_SPIRIT_CAMERA_TYPE:
         return {
             ...state,
             camera: action.payload.camera
+        }
+        case types.RECEIVE_SPIRIT_CAMERA_PHOTOS:
+        return {
+            ...state,
+            spiritCameraPhotos: action.data.photos,
         }
         case types.SET_ROVER:
         return {
@@ -102,10 +112,11 @@ const dates = (state = {
             dateType: action.payload
         }
         case types.SET_SEARCH_DATE:
+            console.log('action from set search date => ', action)
         return {
             ...state,
             solDate: action.payload.solDate || null,
-            date: moment(action.payload.date).format("YYYY-MM-DD") || null,
+            date: moment(action.payload).format("YYYY-MM-DD") || null,
             isCameraPhotosFetching: true
         }
         case types.RECEIVE_DATE_PHOTOS:

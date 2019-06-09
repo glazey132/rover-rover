@@ -11,6 +11,7 @@ export const fetchRecentOpportunityPhotos = async () => {
 export const fetchRecentCuriosityPhotos = async () => {
     try {
         const response = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=${process.env.REACT_APP_NASA_API_KEY}`);
+        console.log('resp from fetch rec curri => ', response) 
         const data = await response.json();
         return data;
     } catch(error) {

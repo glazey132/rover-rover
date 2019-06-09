@@ -8,8 +8,6 @@ import sizeMe from 'react-sizeme'
 import SimpleBarGraph from './charts/SimpleBarGraph';
 import LatLongScatterChart from './charts/LatLongScatterChart';
 
-import {ResponsiveContainer} from 'recharts';
-
 //bootstrap components
 import Spinner from 'react-bootstrap/Spinner';
 import Tabs from 'react-bootstrap/Tabs';

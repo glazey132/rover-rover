@@ -1,9 +1,30 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import createReactClass from 'create-react-class';
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList } from 'recharts';
 // good width for mobile chart is 333px, ipad is  w=666 h=500, ipad pro is w=999 h=666 , half screen is  666, and fulls screen is w=1300 h=300
+const CustomTooltip  = createReactClass({
+
+  render() {
+    const { active } = this.props;
+    console.log('this.props in tool tip => ', this.props)
+
+    if (active) {
+      const { payload, label } = this.props;
+      return (
+        <div style={customTooltipStyle}>
+          <p>Time: {payload[0].payload.time21_5}</p>
+          <p>CME Type: {payload[0].payload.type}</p>
+          <p>Notes: {payload[0].payload.note}</p>
+        </div>
+      );
+    }
+
+    return null;
+  }
+});
 class SimpleBarChart extends React.Component {
   constructor(props) {
     super(props)
@@ -22,7 +43,7 @@ class SimpleBarChart extends React.Component {
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
             <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }}/>
-            <Tooltip payload={this.props.data.cmeData}/>
+            <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
             <Bar dataKey="speed" fill="#0b3d91" unit="mph" />
           </BarChart>
@@ -34,7 +55,7 @@ class SimpleBarChart extends React.Component {
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
             <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }}/>
-            <Tooltip payload={this.props.data.cmeData}/>
+            <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
             <Bar dataKey="halfAngle" fill="#0b3d91" unit="&deg;" />
           </BarChart>
@@ -47,7 +68,7 @@ class SimpleBarChart extends React.Component {
           <CartesianGrid strokeDasharray="3 3"/>
           <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
           <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }} />
-          <Tooltip payload={this.props.data.cmeData}/>
+          <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
           <Legend />
           <Bar dataKey="speed" fill="#0b3d91" unit="mph" />
           </BarChart>
@@ -60,7 +81,7 @@ class SimpleBarChart extends React.Component {
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
             <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }} />
-            <Tooltip payload={this.props.data.cmeData}/>
+            <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
             <Bar dataKey="halfAngle" fill="#0b3d91" unit="&deg;" />
           </BarChart>
@@ -73,7 +94,7 @@ class SimpleBarChart extends React.Component {
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
             <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }}/>
-            <Tooltip payload={this.props.data.cmeData}/>
+            <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
             <Bar dataKey="speed" fill="#0b3d91" label unit="mph" />
           </BarChart>
@@ -86,7 +107,7 @@ class SimpleBarChart extends React.Component {
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5 }} />
             <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }}/>
-            <Tooltip payload={this.props.data.cmeData}/>
+            <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
             <Bar dataKey="halfAngle" fill="#0b3d91" label unit="&deg;" />
           </BarChart>
@@ -99,7 +120,7 @@ class SimpleBarChart extends React.Component {
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5}} />
             <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }} />
-            <Tooltip payload={this.props.data.cmeData}/>
+            <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
             <Bar dataKey="speed" fill="#0b3d91" label unit="mph" />
           </BarChart>
@@ -111,13 +132,19 @@ class SimpleBarChart extends React.Component {
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="type" label={{ value: "CME Type", position: 'insideBottomRight', offset: -5}} />
             <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }} />
-            <Tooltip payload={this.props.data.cmeData}/>
+            <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
             <Bar dataKey="halfAngle" fill="#0b3d91" label unit="&deg;" />
           </BarChart>
         </div>
       );
   }
+}
+
+const customTooltipStyle = {
+  backgroundColor: 'white',
+  padding: '10px',
+  opacity: '0.9'
 }
 
 const mapStateToProps = state => ({

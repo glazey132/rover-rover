@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 //redux
 import { bindActionCreators } from 'redux';
@@ -17,12 +18,14 @@ class CameraButton extends Component {
   }
 
   handleClick = (camera, roverFullName) => {
+    // right now we need to pass in the date from our redux store to this call because we want to keep filtering of photos by camera.
+    // will optimize in future by caching the photos and filtering from that cache.
     if (roverFullName === 'curiosity') { 
-      this.props.setCuriosityCameraType(camera);
+      this.props.setCuriosityCameraType(camera, this.props.date);
     } else if (roverFullName === 'opportunity') {
-      this.props.setOpportunityCameraType(camera);
+      this.props.setOpportunityCameraType(camera, this.props.date);
     } else if (roverFullName === 'spirit') {
-      this.props.setSpiritCameraType(camera);
+      this.props.setSpiritCameraType(camera, this.props.date);
     }
   }
   render() {
@@ -43,7 +46,8 @@ const ButtonStyle = {
 
 const mapStateToProps = state => ({ 
   camera: state.roverSelections.camera,
-  roverFullName: state.roverSelections.roverFullName 
+  roverFullName: state.roverSelections.roverFullName,
+  date: state.dates.date ||  moment().subtract(1, 'day').format('YYYY-MM-DD'),
 })
 
 const mapDispatchToProps = dispatch =>

@@ -2,6 +2,28 @@ import React from 'react';
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
+import createReactClass from 'create-react-class';
+
+const CustomTooltip  = createReactClass({
+
+    render() {
+      const { active } = this.props;
+      console.log('this.props in tool tip => ', this.props)
+  
+      if (active) {
+        const { payload, label } = this.props;
+        return (
+          <div style={customTooltipStyle}>
+            <p>Time: {payload[0].payload.time21_5}</p>
+            <p>CME Type: {payload[0].payload.type}</p>
+            <p>Notes: {payload[0].payload.note}</p>
+          </div>
+        );
+      }
+  
+      return null;
+    }
+  });
 
 class LatLongScatterChart extends React.Component {
     constructor(props) {
@@ -20,7 +42,7 @@ class LatLongScatterChart extends React.Component {
                 <XAxis dataKey={'latitude'} type="number" name='latitude' unit="&deg;" label={{ value: "Latitude", position: 'insideBottomRight', offset: -5 }} />
                 <YAxis dataKey={'longitude'} type="number" name='longitude' unit="&deg;" label={{ value: 'Longitude', angle: -90, position: 'insideLeft' }}/>
                 <Scatter name='CME lat/lon' data={this.props.data.cmeData} fill='#8884d8'/>
-                <Tooltip payload={this.props.data.cmeData}/>
+                <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
                 <Legend />
             </ScatterChart>
             </div>
@@ -33,7 +55,7 @@ class LatLongScatterChart extends React.Component {
                 <XAxis dataKey={'latitude'} type="number" name='latitude' unit="&deg;" label={{ value: "Latitude", position: 'insideBottomRight', offset: -5 }} />
                 <YAxis dataKey={'longitude'} type="number" name='longitude' unit="&deg;" label={{ value: 'Longitude', angle: -90, position: 'insideLeft' }} />
                 <Scatter name='CME lat/lon' data={this.props.data.cmeData} fill='#8884d8'/>
-                <Tooltip payload={this.props.data.cmeData}/>
+                <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
                 <Legend />
             </ScatterChart>
             </div>
@@ -46,7 +68,7 @@ class LatLongScatterChart extends React.Component {
                 <XAxis dataKey={'latitude'} type="number" name='latitude' unit="&deg;" label={{ value: "Latitude", position: 'insideBottomRight', offset: -5 }} />
                 <YAxis dataKey={'longitude'} type="number" name='longitude' unit="&deg;" label={{ value: 'Longitude', angle: -90, position: 'insideLeft' }}/>
                 <Scatter name='CME lat/lon' data={this.props.data.cmeData} fill='#8884d8'/>
-                <Tooltip payload={this.props.data.cmeData}/>
+                <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
                 <Legend />
             </ScatterChart>
             </div>
@@ -58,12 +80,18 @@ class LatLongScatterChart extends React.Component {
                 <XAxis dataKey={'latitude'} type="number" name='latitude' unit="&deg;" label={{ value: "Latitude", position: 'insideBottomRight', offset: -5 }} />
                 <YAxis dataKey={'longitude'} type="number" name='longitude' unit="&deg;" label={{ value: 'Longitude', angle: -90, position: 'insideLeft' }} />
                 <Scatter name='CME lat/lon' data={this.props.data.cmeData} fill='#8884d8'/>
-                <Tooltip payload={this.props.data.cmeData}/>
+                <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
                 <Legend />
             </ScatterChart>
             </div>
         );
     }
 }
+
+const customTooltipStyle = {
+    backgroundColor: 'white',
+    padding: '10px',
+    opacity: '0.75'
+  }
 
 export default LatLongScatterChart;

@@ -7,6 +7,8 @@ export const requestLatestCuriosityPhotos = () => {
 }
 
 export const receiveLatestCuriosityPhotos = data => {
+    console.log("TCL: data", data)
+    
     return {
         type: types.RECEIVE_LATEST_CURIOSITY_PHOTOS,
         data,

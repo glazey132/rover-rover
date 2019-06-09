@@ -1,10 +1,11 @@
 import * as types from "./actionTypes";
 
-export const setOpportunityCameraType = (camera) => {
+export const setOpportunityCameraType = (camera, date) => {
     return {
         type: types.SET_OPPORTUNITY_CAMERA_TYPE,
         payload: { 
-            camera
+            camera,
+            date
         }
     }
 };
