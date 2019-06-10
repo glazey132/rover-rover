@@ -9,7 +9,6 @@ import NasaTodayMedia from './NasaTodayMedia';
 import Modal from 'react-bootstrap/Modal';
 
 const NasaTodayModal = props => {
-  console.log('props -> ', props);
   const { todayDataOpen, exitTodayData, title, explanation, mediaUrl, mediaHdUrl, mediaType } = props;
   return (
     <Modal

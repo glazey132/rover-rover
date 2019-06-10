@@ -22,7 +22,7 @@ class Navigation extends Component {
 
     return (
       <Navbar style={BarStyle} bg="light" expand="lg" fixed="top">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img
             src="http://seekvectorlogo.com/wp-content/uploads/2018/02/nasa-vector-logo.png"
             width="50"
