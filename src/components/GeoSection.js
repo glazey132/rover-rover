@@ -15,29 +15,7 @@ class GeoSection extends Component {
   //* I am keeping this as a class component so that I can add a show world map button / world map at a later time *//
   render() {
     return (
-      !this.props.isGeolocationAvailable
-    ? <div><p style={geoNotificationTextStyle}>Your browser does not support Geolocation</p></div>
-    : !this.props.isGeolocationEnabled
-        ? <div><p style={geoNotificationTextStyle}>Geolocation is not enabled</p></div>
-        : this.props.coords
-        ? <table>
-        <tbody>
-          <tr style={coordsSectionStyle}>
-            <td style={tableLabelCellStyle}>
-              <Badge pill variant="primary">Latitude: </Badge>
-            </td>
-            <td style={tableLabelCellStyle}>{this.props.coords.latitude}</td>
-            <br />
-            <td style={tableLabelCellStyle}>
-              <Badge pill variant="primary">Longitude: </Badge>
-            </td>
-            <td style={tableLabelCellStyle}>{this.props.coords.longitude}</td>
-            </tr>
-          <tr style={geoColumnStyle}><td><LocationImage coords={this.props.coords}/></td></tr>
-          <tr><small>This is the most recent photo that Nasa LandSat imagery has of your location</small></tr>
-        </tbody>
-    </table>
-    : <table style={tableSectionStyle}><tbody><tr><td><p style={geoNotificationTextStyle}>Getting the location data&hellip;</p></td></tr></tbody></table>
+            <div style={geoColumnStyle}><LocationImage coords={this.props.coords}/></div>
     )
   }
     
@@ -53,7 +31,8 @@ const coordsSectionStyle = {
 
 const geoColumnStyle = {
     display: 'inline-flex',
-    maxHeight: '100%'
+    maxHeight: '100%',
+    height: '100%'
   }
 
 const tableSectionStyle = {
