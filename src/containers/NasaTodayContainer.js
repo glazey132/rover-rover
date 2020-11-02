@@ -25,6 +25,7 @@ function NasaTodayContainer(props) {
     .then(response => {
       setReady(true);
       setTodayDataOpen(true);
+      setDataDate(response.date);
       setTitle(response.title);
       setExplanation(response.explanation);
       setMediaUrl(response.url);
