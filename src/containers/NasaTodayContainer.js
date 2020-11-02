@@ -1,50 +1,54 @@
 //packages
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 //app components
 import NasaTodayModal from '../components/NasaTodayModal';
 
 
-class NasaTodayContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ready: false
-    }
-  }
+function NasaTodayContainer(props) {
+  const [ready, setReady] = useState(false);
+  const [todayDataOpen, setTodayDataOpen] = useState(false);
+  const [data_date, setDataDate] = useState(null);
+  const [explanation, setExplanation] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [mediaUrl, setMediaUrl] = useState(null);
+  const [mediaHdUrl, setMediaHdUrl] = useState(null);
+  const [mediaType, setMediaType] = useState(null);
 
-  async componentDidMount(){
-    const result = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}`)
-    const json = await result.json();
-    this.setState({
-      todayDataOpen: true,
-      data_date: json.date,
-      explanation: json.explanation,
-      title: json.title,
-      mediaUrl: json.url,
-      mediaHdUrl: json.hdurl,
-      mediaType: json.media_type,
-      ready: true
-    })
-  }
+  useEffect(() => {
+    fetch(
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}`,
+      {
+        method: "GET"
+      }
+    )
+    .then(res => res.json())
+    .then(response => {
+      setReady(true);
+      setTodayDataOpen(true);
+      setDataDate(response.date);
+      setTitle(response.title);
+      setExplanation(response.explanation);
+      setMediaUrl(response.url);
+      setMediaHdUrl(response.hdurl);
+      setMediaType(response.media_type);
+    });
+  });
 
-  render() {
-    const { ready } = this.state;
-    const { todayDataOpen, exitTodayData } = this.props;
+    const { exitTodayData } = props;
     return (
       <div>
       {ready ?
         <NasaTodayModal
-        title={this.state.title}
-        mediaUrl={this.state.mediaUrl}
-        mediaHdUrl={this.state.mediaHdUrl}
-        mediaType={this.state.mediaType}
-        explanation={this.state.explanation}
+        title={title}
+        mediaUrl={mediaUrl}
+        mediaHdUrl={mediaHdUrl}
+        mediaType={mediaType}
+        explanation={explanation}
         todayDataOpen={todayDataOpen}
         exitTodayData={exitTodayData}/>
         : <p>loading...</p>}
       </div>
-    )
-  }
+    );
 }
 
 export default NasaTodayContainer;
