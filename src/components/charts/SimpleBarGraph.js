@@ -9,15 +9,20 @@ const CustomTooltip  = createReactClass({
 
   render() {
     const { active } = this.props;
-    console.log('this.props in tool tip => ', this.props)
+
 
     if (active) {
       const { payload, label } = this.props;
       return (
         <div style={customTooltipStyle}>
           <p>Time: {payload[0].payload.time21_5}</p>
+          <p>Speed: {payload[0].payload.speed}</p>
+          <p>Half Angle: {payload[0].payload.halfAngle}</p>
+          <p>Latitude: {payload[0].payload.latitude}</p>
+          <p>Longitude: {payload[0].payload.longitude}</p>
           <p>CME Type: {payload[0].payload.type}</p>
           <p>Notes: {payload[0].payload.note}</p>
+          <a href={payload[0].payload.link}>Read More</a>
         </div>
       );
     }
@@ -96,7 +101,7 @@ class SimpleBarChart extends React.Component {
             <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }}/>
             <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
-            <Bar dataKey="speed" fill="#0b3d91" label unit="mph" />
+            <Bar dataKey="speed" fill="#0b3d91" unit="mph" />
           </BarChart>
         </div>
         :
@@ -109,7 +114,7 @@ class SimpleBarChart extends React.Component {
             <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }}/>
             <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
-            <Bar dataKey="halfAngle" fill="#0b3d91" label unit="&deg;" />
+            <Bar dataKey="halfAngle" fill="#0b3d91" unit="&deg;" />
           </BarChart>
         </div>
       :
@@ -122,7 +127,7 @@ class SimpleBarChart extends React.Component {
             <YAxis label={{ value: 'mph', angle: -90, position: 'insideLeft' }} />
             <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
-            <Bar dataKey="speed" fill="#0b3d91" label unit="mph" />
+            <Bar dataKey="speed" fill="#0b3d91" unit="mph" />
           </BarChart>
         </div>
       :
@@ -134,7 +139,7 @@ class SimpleBarChart extends React.Component {
             <YAxis label={{ value: 'degree', angle: -90, position: 'insideLeft' }} />
             <Tooltip content={<CustomTooltip/>} payload={this.props.data.cmeData}/>
             <Legend />
-            <Bar dataKey="halfAngle" fill="#0b3d91" label unit="&deg;" />
+            <Bar dataKey="halfAngle" fill="#0b3d91" unit="&deg;" />
           </BarChart>
         </div>
       );
@@ -143,6 +148,7 @@ class SimpleBarChart extends React.Component {
 
 const customTooltipStyle = {
   backgroundColor: 'white',
+  color: 'black',
   padding: '10px',
   opacity: '0.9'
 }
