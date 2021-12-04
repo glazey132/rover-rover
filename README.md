@@ -19,8 +19,8 @@ Second: I wanted to have a project that I built with React that I can keep comin
 - Save your env.sh file, and navigate to the root directory of your project in your terminal. 
 - To run the project, in your terminal, run `source env.sh && cd src && npm run start`. A new window will open in your browser.
 
-## Known issues / bugs
+## Known issues
 
-## Outlook / Trello Board
+## Outlook
 - Trello board: https://trello.com/b/C951j6s1/rover-rover
 - Future major change: migrate to solely using React Hooks
