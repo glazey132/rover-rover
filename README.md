@@ -2,7 +2,7 @@
 
 # Table of Contents
 [Overview](#overview)
-[How to run]
+[How to run](#how-to-run)
 
 ## Overview
 - I made Rover Rover for two reasons: First, I believe that your average person should have access to the cutting edge and meaningful data that exists in our world. When I found out that NASA maintains an API to expose this to the general public, I knew I wanted to make a project that consumes and displays that data. This NASA Mars rover data (and more) is maintained, is free, and was just floating around out there and that irked me. Hopefully this project makes it more accessible to the general public in a fun and intuitive way.
