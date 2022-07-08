@@ -121,7 +121,7 @@ const titleStyle = {
 }
 
 const graphContainerStyle = {
-    padding: '20px'
+    padding: '20px',
 }
 
 const cmeItemSectionStyle = {

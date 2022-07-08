@@ -4,7 +4,7 @@ import Notification from './Notification';
 const NotificationSection = props => (
     <section style={notificationSectionStyle}>
       <h4>Latest Notification</h4>
-      <Notification text={props.notification.messageBody}/>
+      <Notification text={props?.notification?.messageBody}/>
     </section>
 );
 
