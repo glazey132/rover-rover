@@ -10,8 +10,7 @@ const CustomTooltip  = createReactClass({
   render() {
     const { active } = this.props;
 
-
-    if (active) {
+    if (active && this.props.payload) {
       const { payload, label } = this.props;
       return (
         <div style={customTooltipStyle}>

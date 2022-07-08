@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 
 //redux
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 //bootstrap components
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+
+
+import Toggles from "../lib/Toggles"
 
 class Navigation extends Component {
   constructor(props) {
@@ -36,7 +35,7 @@ class Navigation extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/graphs">Graphs</Nav.Link>
+            {Toggles.enabled('graphDisplay') && <Nav.Link href="/graphs">Graphs</Nav.Link>}
             <NavDropdown title="Choose a Rover" id="basic-nav-dropdown">
               <NavDropdown.Item href="/opportunity">Opportunity</NavDropdown.Item>
               <NavDropdown.Item href="/curiosity">Curiosity</NavDropdown.Item>

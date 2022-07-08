@@ -15,6 +15,8 @@ import Col from 'react-bootstrap/Col';
 
 import sizeMe from 'react-sizeme';
 
+import Toggles from "./lib/Toggles"
+
 
 
 
@@ -23,18 +25,14 @@ class App extends Component {
     super(props)
     this.state = {
       todayDataOpen: true,
-      notifications: null
+      notifications: null,
+      notification: null
     }
   }
 
 
   async componentDidMount(){
-    let notification = null;
-
- 
-
     const dateToday = moment().format('YYYY-MM-DD');
-
     const asteroidResults = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${dateToday}&api_key=${process.env.REACT_APP_NASA_API_KEY}`)
     const asteroidJson = await asteroidResults.json();
 
@@ -45,12 +43,11 @@ class App extends Component {
 
     //console.log('the notification json => ',  notificationJson);
     notificationJson.forEach(note => {
-      if(note.messageType === 'Report' && notification === null) {
-        notification = note;
+      if(note.messageType === 'Report' && this.state.notification === null) {
+        this.setState({
+          notification: note
+        })
       }
-    })
-    this.setState({
-      notification: notification
     })
   }
 
@@ -71,6 +68,32 @@ class App extends Component {
 
   render() {
     const { todayDataOpen } = this.state;
+    // const displayToggle = false;
+    const dailyData = function(state, props) {
+        if (Toggles.enabled('graphDisplay')) {
+          return (
+            <Row>
+              <Col xs={12}  sm={12} lg={6} style={notificationColumnStyle}>
+                {state.notification && <NotificationSection notification={state.notification} />}
+              </Col>
+              <Col xs={12} sm={12} lg={6} style={geoColumnStyle}>
+                <GeoSection screenSize={props.size}></GeoSection>
+              </Col>
+            </Row>
+          )
+        } else {
+          return (
+            <>
+              <Col xs={12}  sm={12} lg={6} style={notificationColumnStyle}>
+                {state.notification ? <NotificationSection notification={state.notification} /> : <p>Loading...</p>}
+              </Col>
+              <Col xs={12} sm={12} lg={6} style={geoColumnStyle}>
+                <GeoSection screenSize={props.size}></GeoSection>
+              </Col>
+            </>
+          )
+        }
+    }
     return (
       <div className="overlay">
         {todayDataOpen ?
@@ -78,15 +101,8 @@ class App extends Component {
           :
           <Container fluid>
             <Navigation />
-            <Row>
-              <Col xs={12}  sm={12} lg={6} style={notificationColumnStyle}>
-                <NotificationSection notification={this.state.notification} />
-              </Col>
-              <Col xs={12} sm={12} lg={6} style={geoColumnStyle}>
-                <GeoSection screenSize={this.props.size}></GeoSection>
-              </Col>
-            </Row>
-            <Row style={this.props.size.width >= 992 ? desktopBottomRowStyle : mobileBottomRowStyle} noGutters={true}><Col xs={12} style={bottomColumnStyle}><CMESection /></Col></Row>
+            {dailyData(this.state, this.props)}
+            {Toggles.enabled('graphDisplay') && <Row style={this.props.size.width >= 992 ? desktopBottomRowStyle : mobileBottomRowStyle} noGutters={true}><Col xs={12} style={bottomColumnStyle}><CMESection /></Col></Row>}
           </Container>
         }
       </div>
