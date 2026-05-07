@@ -74,7 +74,7 @@ export function RoverPage() {
 
   return (
     <motion.div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, ease: 'easeOut' }}>
-      <PageHeader title="Mars Rover Explorer" subtitle="Search NASA rover photography by mission, camera, Earth date, or Martian sol." accent="rover" />
+      <PageHeader title="Mars Rover Explorer - DEPRECATED - NASA API no longer supports rover photos :(" subtitle="Search NASA rover photography by mission, camera, Earth date, or Martian sol." accent="rover" />
 
       <div className="border-b border-space-border">
         <div className="flex gap-0 overflow-x-auto">

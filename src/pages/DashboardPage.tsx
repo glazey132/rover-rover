@@ -99,7 +99,7 @@ export function DashboardPage() {
         </section>
 
         <section className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <SectionCard to="/rovers/curiosity" icon={Telescope} accent="rover" title="Mars Rover Explorer" description="Browse photos from Curiosity, Opportunity, and Spirit filtered by camera and date." />
+          <SectionCard to="/rovers/curiosity" icon={Telescope} accent="rover" title="Mars Rover Explorer (DEPRECATED)" description="Browse photos from Curiosity, Opportunity, and Spirit filtered by camera and date." />
           <SectionCard to="/space-weather" icon={Activity} accent="weather" title="CME & Solar Events" description="Visualize coronal mass ejection data and track DONKI space weather alerts." />
           <SectionCard to="/earth" icon={Globe} accent="earth" title="Earth from Space" description="Browse Earth imagery captured by NASA's EPIC satellite from 1.5 million km away." />
           <SectionCard to="/asteroids" icon={Radar} accent="asteroid" title="Asteroid Tracker" description="Monitor near-Earth objects passing by today, including potentially hazardous asteroids." />

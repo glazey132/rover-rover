@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 
 const navLinks = [
   { to: '/', label: 'Home', accent: 'border-accent-blue' },
-  { to: '/rovers/curiosity', label: 'Rovers', accent: 'border-accent-rover' },
+  { to: '/rovers/curiosity', label: 'Rovers (DEPRECATED)', accent: 'border-accent-rover' },
   { to: '/space-weather', label: 'Space Weather', accent: 'border-accent-weather' },
   { to: '/earth', label: 'Earth', accent: 'border-accent-earth' },
   { to: '/asteroids', label: 'Asteroids', accent: 'border-accent-asteroid' },
