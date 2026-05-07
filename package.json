@@ -2,45 +2,40 @@
   "name": "rover-rover",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
-    "axios": "^0.21.1",
-    "bootstrap": "^4.3.1",
-    "create-react-class": "^15.6.3",
-    "lodash": "^4.17.11",
-    "moment": "^2.24.0",
-    "react": "^16.8.4",
-    "react-bootstrap": "^1.0.0-beta.5",
-    "react-datepicker": "^2.5.0",
-    "react-dom": "^16.8.4",
-    "react-geolocated": "^2.4.1",
-    "react-redux": "^7.0.3",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "^4.0.3",
-    "react-sizeme": "^2.6.2",
-    "recharts": "^1.5.0",
-    "redux": "^4.0.1",
-    "redux-saga": "^1.0.2"
+    "@tanstack/react-query": "^5.90.12",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.562.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-error-boundary": "^6.0.0",
+    "react-is": "^19.2.6",
+    "react-router-dom": "^7.10.1",
+    "recharts": "^3.5.0",
+    "tailwind-merge": "^3.4.0",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
-    "create-react-class": "^15.6.3",
-    "redux-logger": "^3.0.6"
+    "@types/node": "^25.0.0",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.7"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "main": "index.js",
   "repository": "https://github.com/glazey132/rover-rover.git",
   "author": "glazey132 <alglaze132@gmail.com>",
   "license": "MIT"

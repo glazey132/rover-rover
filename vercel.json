@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/donki/:path*",
+      "destination": "https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/:path*"
+    }
+  ]
+}
