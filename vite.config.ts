@@ -9,13 +9,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  server: {
-    proxy: {
-      '/api/donki': {
-        target: 'https://kauai.ccmc.gsfc.nasa.gov',
-        changeOrigin: true,
-        rewrite: (requestPath) => requestPath.replace(/^\/api\/donki/, '/DONKI/WS/get'),
-      },
-    },
-  },
 })

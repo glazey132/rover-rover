@@ -8,7 +8,7 @@ import { DataCard } from '@/components/ui/DataCard'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { StatCard } from '@/components/ui/StatCard'
 import { useAPOD, useCMEAnalysis, useDONKINotifications } from '@/hooks/useNASA'
-import { toISODate } from '@/lib/utils'
+import { cn, toISODate } from '@/lib/utils'
 
 const today = toISODate(new Date())
 const thirtyDaysAgo = toISODate(new Date(Date.now() - 30 * 864e5))
@@ -26,7 +26,14 @@ export function DashboardPage() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, ease: 'easeOut' }}>
-      <section className="relative min-h-[480px] overflow-hidden border-b border-space-border lg:aspect-[16/7] lg:max-h-[680px]">
+      <section
+        className={cn(
+          'relative border-b border-space-border',
+          apod.data?.media_type === 'video'
+            ? 'overflow-visible bg-space-bg py-10'
+            : 'min-h-[480px] overflow-hidden lg:aspect-[16/7] lg:max-h-[680px]',
+        )}
+      >
         {apod.isLoading ? <Skeleton className="absolute inset-0 rounded-none bg-space-surface" /> : null}
 
         {apod.isError ? (
@@ -58,9 +65,9 @@ export function DashboardPage() {
         ) : null}
 
         {apod.data?.media_type === 'video' ? (
-          <div className="mx-auto flex min-h-[480px] max-w-5xl flex-col justify-center gap-4 px-4 py-10">
+          <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-text-primary">{apod.data.title}</h1>
-            <iframe src={apod.data.url} title={apod.data.title} className="aspect-video w-full rounded-xl border border-space-border" allowFullScreen />
+            <APODVideo url={apod.data.url} title={apod.data.title} />
             <DataCard>
               <p className="text-sm leading-relaxed text-text-secondary">{apod.data.explanation}</p>
             </DataCard>
@@ -100,6 +107,36 @@ export function DashboardPage() {
       </div>
     </motion.div>
   )
+}
+
+function APODVideo({ url, title }: { url: string; title: string }) {
+  if (isDirectVideo(url)) {
+    return <video src={url} title={title} className="aspect-video w-full rounded-xl border border-space-border bg-black object-contain" controls preload="metadata" />
+  }
+
+  if (isEmbeddableVideo(url)) {
+    return <iframe src={url} title={title} className="aspect-video w-full rounded-xl border border-space-border" allowFullScreen />
+  }
+
+  return (
+    <DataCard className="flex aspect-video flex-col items-center justify-center gap-3 text-center">
+      <div className="text-base font-semibold text-text-primary">NASA video cannot be embedded</div>
+      <p className="max-w-md text-sm text-text-secondary">
+        Today's APOD video is hosted on a NASA page that blocks iframe playback. Open it directly to view the media.
+      </p>
+      <a href={url} target="_blank" rel="noreferrer" className="rounded-lg border border-space-border px-4 py-2 text-sm font-medium text-accent-blue transition-colors duration-150 hover:border-space-border-strong hover:bg-white/[0.06]">
+        Open NASA video -&gt;
+      </a>
+    </DataCard>
+  )
+}
+
+function isDirectVideo(url: string) {
+  return /\.(mp4|webm|ogg)(?:\?.*)?$/i.test(url)
+}
+
+function isEmbeddableVideo(url: string) {
+  return /youtube\.com\/embed|player\.vimeo\.com/i.test(url)
 }
 
 function SectionCard({

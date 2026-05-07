@@ -4,11 +4,21 @@ import { toISODate } from '@/lib/utils'
 const API_KEY = import.meta.env.VITE_NASA_API_KEY || 'DEMO_KEY'
 const BASE = 'https://api.nasa.gov'
 
+export class NASAApiError extends Error {
+  constructor(
+    message: string,
+    public readonly status: number,
+  ) {
+    super(message)
+    this.name = 'NASAApiError'
+  }
+}
+
 async function nasaFetch<T>(url: string): Promise<T> {
   const response = await fetch(url)
 
   if (!response.ok) {
-    throw new Error(`NASA API error: ${response.status} ${response.statusText}`)
+    throw new NASAApiError(`NASA API error: ${response.status} ${response.statusText}`, response.status)
   }
 
   return response.json() as Promise<T>
@@ -44,7 +54,14 @@ export async function fetchRoverPhotosByDate(
 }
 
 export async function fetchCMEAnalysis(startDate: string, endDate: string): Promise<CMEAnalysis[]> {
-  return nasaFetch(`/api/donki/CMEAnalysis?startDate=${startDate}&endDate=${endDate}&catalog=ALL`)
+  const query = new URLSearchParams({
+    startDate,
+    endDate,
+    catalog: 'ALL',
+    api_key: API_KEY,
+  })
+
+  return nasaFetch(`${BASE}/DONKI/CMEAnalysis?${query.toString()}`)
 }
 
 export async function fetchEPICImages(): Promise<EPICImage[]> {
@@ -68,6 +85,12 @@ export async function fetchNEOs(): Promise<Record<string, NEOObject[]>> {
 export async function fetchDONKINotifications(days = 7): Promise<DONKINotification[]> {
   const end = toISODate(new Date())
   const start = toISODate(new Date(Date.now() - days * 864e5))
+  const query = new URLSearchParams({
+    startDate: start,
+    endDate: end,
+    type: 'all',
+    api_key: API_KEY,
+  })
 
-  return nasaFetch(`/api/donki/notifications?startDate=${start}&endDate=${end}&type=all`)
+  return nasaFetch(`${BASE}/DONKI/notifications?${query.toString()}`)
 }

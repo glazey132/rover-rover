@@ -87,7 +87,7 @@ export function EarthPage() {
           <DataCard className="w-full shrink-0 lg:w-80">
             <h2 className="text-base font-semibold text-text-primary">Image Details</h2>
             <div className="mt-5 space-y-4">
-              <Detail label="Captured" value={format(new Date(`${image.date}Z`), 'MMM dd, yyyy - HH:mm UTC')} />
+              <Detail label="Captured" value={format(new Date(`${image.date}Z`), "MMM dd, yyyy - HH:mm 'UTC'")} />
               <Detail label="Identifier" value={image.identifier} mono />
               <Detail label="Centroid Lat" value={image.centroid_coordinates.lat.toFixed(4)} />
               <Detail label="Centroid Lon" value={image.centroid_coordinates.lon.toFixed(4)} />
